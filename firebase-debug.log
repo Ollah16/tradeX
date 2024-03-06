@@ -1,0 +1,24 @@
+[debug] [2024-03-06T13:20:37.004Z] ----------------------------------------------------------------------
+[debug] [2024-03-06T13:20:37.007Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Olah\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-06T13:20:37.008Z] CLI Version:   12.7.0
+[debug] [2024-03-06T13:20:37.008Z] Platform:      win32
+[debug] [2024-03-06T13:20:37.008Z] Node Version:  v19.5.0
+[debug] [2024-03-06T13:20:37.008Z] Time:          Wed Mar 06 2024 08:20:37 GMT-0500 (Eastern Standard Time)
+[debug] [2024-03-06T13:20:37.008Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-06T13:20:37.013Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-03-06T13:20:37.060Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-06T13:20:37.060Z] > authorizing via signed-in user (olaroluh@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Olah\OneDrive\Desktop\all_react_applications\tradeX_app\tradex
+
+[debug] [2024-03-06T13:20:37.442Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-03-06T13:20:37.442Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
