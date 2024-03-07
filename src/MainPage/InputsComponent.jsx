@@ -144,15 +144,15 @@ const InputsComponent = (props) => {
             </div>
 
             <div className='flex justify-between my-2'>
-                <span className='underline text-lg cursor-pointer text-blue-500 opacity-80 hover:opacity-100' onClick={() => setRate(!isAdvanceRate)}>
+                <span className='underline text-lg sm:text-sm cursor-pointer text-blue-500 opacity-80 hover:opacity-100' onClick={() => setRate(!isAdvanceRate)}>
                     {isAdvanceRate ?
                         'Hide Advanced Currency Data'
                         :
                         'Advanced Currency Data'}
                 </span>
-                <span className='cursor-pointer text-lg underline text-blue-500 opacity-80 flex items-center gap-x-1 hover:opacity-100' onClick={() => window.print()}>
+                <span className='cursor-pointer text-lg sm:text-sm underline text-blue-500 opacity-80 flex items-center gap-x-1 hover:opacity-100' onClick={() => window.print()}>
                     <i><PrinterIcon className='h-5 text-black/60' /></i>
-                    <a className=''>print</a>
+                    <a>print</a>
                 </span>
             </div>
 
