@@ -52,7 +52,7 @@ const Footer = () => {
 
     return (
         <div className='px-10 py-5 bg-black/95'>
-            <div className={`after:content-[''] after:h-[.08px] after:w-full after:bg-blue-200/25 flex flex-col gap-y-3`}>
+            <div className={`after:content-[''] after:h-[1px] after:w-full after:bg-blue-200/25 flex flex-col gap-y-3`}>
                 <div className={`text-3xl pl-9 font-semibold text-blue-200 cursor-pointer 
  uppercase`}>TradeX</div>
             </div>
