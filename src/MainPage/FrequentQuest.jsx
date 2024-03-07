@@ -51,8 +51,12 @@ const FrequentQuest = () => {
             {faq.map((question, index) => (
 
                 <div key={index}>
-                    <h2 className='flex items-center text-lg font-medium cursor-pointer my-3 text-black/90' onClick={() => handleQuest(index)}>
-                        <PlusIcon className={`text-green-800 h-5 mr-1 transition-rotate duration-500 ease-in-out w-5 ${question.isClicked ? '-rotate-[135deg]' : '-rotate-180'}`} />
+                    <h2 className='flex items-center text-sm md:text-lg  font-medium cursor-pointer my-3 text-black/90' onClick={() => handleQuest(index)}>
+
+                        <span>
+                            <PlusIcon className={`text-green-800 h-5 mr-1 transition-rotate duration-500 ease-in-out w-5 ${question.isClicked ? '-rotate-[135deg]' : '-rotate-180'}`} />
+                        </span>
+
                         <span>{question.question}</span>
                     </h2>
 
