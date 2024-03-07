@@ -5,12 +5,12 @@ import InputsComponent from './InputsComponent';
 
 const ConvertComp = (props) => {
 
-    const { amount, equivalent, setAmount, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop } = props
+    const { amount, equivalent, setAmount, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate } = props
 
 
 
     return (
-        <div className="flex flex-col gap-y-10 md:flex-row my-5 md:gap-x-10 justify-between relative">
+        <div className="flex flex-col gap-y-10 my-5 md:gap-x-10 justify-between relative md:grid md:grid-cols-3">
             <InputsComponent
                 navDrop={navDrop}
                 currencyOne={currencyOne}
@@ -20,6 +20,8 @@ const ConvertComp = (props) => {
                 equivalent={equivalent}
                 amount={amount}
                 setAmount={setAmount}
+                isAdvanceRate={isAdvanceRate}
+                setRate={setRate}
             />
 
             <ChartComponent

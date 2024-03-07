@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { QuestionMarkCircleIcon, ChevronLeftIcon, ChevronRightIcon, CalendarIcon } from '@heroicons/react/outline'
+import { QuestionMarkCircleIcon, ChevronLeftIcon, ChevronRightIcon, CalendarIcon, PrinterIcon } from '@heroicons/react/outline'
 import { LuArrowUpDown } from "react-icons/lu";
 
 const InputsComponent = (props) => {
-    const { amount, setAmount, equivalent, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop } = props
+    const { amount, setAmount, equivalent, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate } = props
 
 
     const [interBank, setInter] = useState([
@@ -24,10 +24,6 @@ const InputsComponent = (props) => {
     ])
     let [fullDate, setFDate] = useState(`${day < 10 ? '0' + day : day}/${months[month].toUpperCase()}/${year}`)
 
-    useEffect(() => {
-
-
-    }, [fullDate])
 
 
     const handleDate = (event) => {
@@ -76,14 +72,16 @@ const InputsComponent = (props) => {
 
     }
 
-    return (<div className='rounded-lg shadow-xl shadow-gray-300 md:max-w-[66.66%] p-7 w-full relative'>
+
+    return (<div className='rounded-lg shadow-xl shadow-gray-300 col-span-2 p-7 w-full relative'>
         <div className='flex flex-col gap-y-3'>
             <div className='flex gap-x-5 sm:flex-row flex-col gap-y-5'>
                 <div className='flex flex-col gap-x-8 gap-y-3'>
-                    <input
-                        value={currencyOne}
+                    <select
                         onInput={(event) => setCurrOne(event.target.value)}
-                        className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`} />
+                        className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}>
+                        <option>{currencyOne}</option>
+                    </select>
 
                     <input
                         value={amount}
@@ -96,11 +94,12 @@ const InputsComponent = (props) => {
 
 
                 <div className='flex flex-col gap-x-8 gap-y-3'>
-                    <input
-                        value={currencyTwo}
+                    <select
                         onInput={(event) => setCurrTwo(event.target.value)}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}
-                    />
+                    >
+                        <option>{currencyTwo}</option>
+                    </select>
 
                     <input
                         value={equivalent}
@@ -142,6 +141,23 @@ const InputsComponent = (props) => {
                         <span className='learnmore cursor-pointer w-max px-2 rounded-sm text-sm align-middle absolute md:-bottom-6 -bottom-5 md:-right-16 -right-8  bg-gray-500/75 md:bg-gray-500 text-white tracking-tighter'>click here to learn more about currency converter</span>
                     </div>
                 </div>
+            </div>
+
+            <div className='flex justify-between my-2'>
+                <span className='underline text-lg cursor-pointer text-blue-500 opacity-80 hover:opacity-100' onClick={() => setRate(!isAdvanceRate)}>
+                    {isAdvanceRate ?
+                        'Hide Advanced Currency Data'
+                        :
+                        'Advanced Currency Data'}
+                </span>
+                <span className='cursor-pointer text-lg underline text-blue-500 opacity-80 flex items-center gap-x-1 hover:opacity-100' onClick={() => window.print()}>
+                    <i><PrinterIcon className='h-5 text-black/60' /></i>
+                    <a className=''>print</a>
+                </span>
+            </div>
+
+            <div>
+                <p className='text-xs text-gray-500'>TRADEX's currency calculator tools use TRADEX Rates™, the touchstone FX rates compiled from leading market data contributors.</p>
             </div>
         </div>
     </div >)

@@ -11,7 +11,7 @@ const ChartComponent = (props) => {
 
 
     return (
-        <div className='border border-gray-300 rounded-lg p-7 md:max-w-[33.34%] w-full'>
+        <div className='border border-gray-300 rounded-lg p-7 w-full'>
             <table className='table-auto w-full'>
                 <thead>
                     <tr>

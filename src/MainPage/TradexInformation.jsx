@@ -30,7 +30,7 @@ const TradexInformation = () => {
             </div>
 
             <div>
-                <div className='h-12 mt-4'>
+                <div className='h-12 mt-5 mb-9'>
                     <img className='h-full' src={yearsImage} />
                 </div>
                 <h3 className='text-xl my-4'>Credible and accurate</h3>
@@ -38,7 +38,7 @@ const TradexInformation = () => {
             </div>
 
             <div>
-                <div className='h-12 mt-4'>
+                <div className='h-12 mt-5 mb-9'>
                     <img className='h-full' src={trustedImage} />
                 </div>
                 <h3 className='text-xl my-4'>Trusted provider</h3>
@@ -46,7 +46,7 @@ const TradexInformation = () => {
             </div>
 
             <div>
-                <div className='h-12 mt-4'>
+                <div className='h-12 mt-5 mb-9'>
                     <img className='h-full' src={credibleImage} />
                 </div>
                 <h3 className='text-xl my-4'>Years of FX Data</h3>

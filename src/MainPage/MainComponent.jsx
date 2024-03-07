@@ -9,10 +9,11 @@ import FrequentQuest from './FrequentQuest'
 
 const MainComponent = ({ navDrop, handleDrop }) => {
     const [amount, setAmount] = useState(20)
-    const [currencyOne, setCurrOne] = useState('')
-    const [currencyTwo, setCurrTwo] = useState('')
+    const [currencyOne, setCurrOne] = useState('Eth')
+    const [currencyTwo, setCurrTwo] = useState('Btc')
     const [equivalent, setEquiv] = useState(30)
     const mainRef = useRef(null)
+    const [isAdvanceRate, setRate] = useState(false)
 
     // useEffect(() => {
     //     handleFetchRate()
@@ -69,9 +70,16 @@ const MainComponent = ({ navDrop, handleDrop }) => {
                         currencyTwo={currencyTwo}
                         setCurrOne={setCurrOne}
                         setCurrTwo={setCurrTwo}
-                        equivalent={equivalent} />
+                        equivalent={equivalent}
+                        isAdvanceRate={isAdvanceRate}
+                        setRate={setRate}
+                    />
 
-                    <TradexDataComp />
+                    <TradexDataComp
+                        isAdvanceRate={isAdvanceRate}
+                        currencyOne={currencyOne}
+                        currencyTwo={currencyTwo}
+                    />
                 </div>
                 <div className='bg-gray-500/5 mx-[-28px] mb-[-0.75rem]'>
                     <div className='max-w-[900px] mx-auto'>
