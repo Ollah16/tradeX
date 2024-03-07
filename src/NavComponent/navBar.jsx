@@ -10,7 +10,9 @@ const NavBar = (props) => {
     const { navDrop, handleDrop } = props
 
     useEffect(() => {
-        const handleBody = () => navDrop ? document.querySelector('body').style.overflowY = 'hidden' : document.querySelector('body').style.overflowY = 'auto'
+        const handleBody = () =>
+            navDrop ? document.querySelector('body').style.overflow = 'hidden'
+                : document.querySelector('body').style.overflow = 'auto'
         handleBody()
     }, [navDrop])
 
