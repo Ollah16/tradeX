@@ -57,7 +57,7 @@ const Footer = () => {
  uppercase`}>TradeX</div>
             </div>
 
-            <div className='flex flex-col sm:grid sm:grid-cols-3 md:flex md:flex-row justify-between gap-x-12'>
+            <div className='flex flex-col sm:grid sm:grid-cols-3 md:flex md:flex-row justify-between gap-x-12 py-2'>
                 {Object.entries(footerList).map(([liParent, liChild], index) => {
 
                     let findActive = Array.isArray(category) ? category.find(a => a === liParent) : null
