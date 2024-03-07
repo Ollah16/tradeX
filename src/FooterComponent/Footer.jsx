@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import appleStore from '../asset/appleStore.webp'
 import googlePlay from '../asset/googlePlay.webp'
+import { PlusIcon } from '@heroicons/react/outline'
 
 const Footer = () => {
 
@@ -33,6 +34,22 @@ const Footer = () => {
             'Careers']
     })
 
+    const [category, setCat] = useState([])
+
+    const handleFooter = (toggleType) => {
+        let newCat = [...category]
+
+        let filterArr = newCat.find(a => a === toggleType)
+
+        if (filterArr) {
+            newCat = newCat.filter((a) => a != filterArr)
+            setCat(newCat)
+        }
+        else {
+            setCat([...category, toggleType])
+        }
+    }
+
     return (
         <div className='px-10 py-5 bg-black/95'>
             <div className={`after:content-[''] after:h-[.08px] after:w-full after:bg-blue-200/25 flex flex-col gap-y-3`}>
@@ -40,34 +57,33 @@ const Footer = () => {
  uppercase`}>TradeX</div>
             </div>
 
-            <div className='flex justify-between gap-x-12'>
-                {Object.entries(footerList).slice(0, 4).map(([liParent, liChild]) =>
-                (
-                    <ul key={liParent} className='w-4/12 my-5'>
-                        <li className='text-white/35 cursor-pointer my-4'>{liParent}</li>
-                        {liChild.map((child, index) => (
-                            <li className='text-white/70 cursor-pointer hover:underline my-2' key={index}>{child}</li>
-                        ))}
-                    </ul>
-                )
-                )}
+            <div className='flex flex-col sm:grid sm:grid-cols-3 md:flex md:flex-row justify-between gap-x-12'>
+                {Object.entries(footerList).map(([liParent, liChild], index) => {
 
-                {Object.entries(footerList).slice(4, 5).map(([liParent, liChild]) =>
-                (
-                    <ul key={liParent}
-                        className={`before:content-[''] before:h-full before:w-[.08px] before:inline-block before:bg-white/35 flex gap-x-5 w-4/12 my-5`}>
+                    let findActive = Array.isArray(category) ? category.find(a => a === liParent) : null
+
+                    return <ul key={liParent}
+                        className={`sm:w-fit sm:my-5 md:my-2 
+                        ${index === 4 ? `sm:before:content-[''] sm:before:h-full sm:before:w-px 
+                        sm:before:inline-block sm:before:bg-white/35 sm:flex gap-x-5 sm:col-span-2 sm:relative sm:justify-self-center` : ''}`}>
+
                         <span>
-                            <li className='text-white/35 cursor-pointer my-4'>{liParent}</li>
-                            {liChild.map((child, index) => (
-                                <li className='text-white/70 cursor-pointer hover:underline my-2' key={index}>{child}</li>
+                            <li
+                                className='text-white/35 cursor-pointer my-3 sm:mb-4 sm:mt-0 flex justify-between items-center sm:block leading-normal'
+                                onClick={() => handleFooter(liParent)}
+                            >{liParent} <PlusIcon className={`h-5 sm:hidden transition-rotate duration-500 ease-in-out ${findActive ? '-rotate-[135deg]' : '-rotate-180'}`} /></li>
+
+                            {liChild.map((child, childIndex) => (
+                                <li className={`text-white/70 cursor-pointer hover:underline overflow-hidden
+                                 md:my-2 transition-height duration-500 ease-in-out sm:h-auto ${findActive ? 'h-10 my-2' : 'h-0'}`} key={childIndex}>{child}</li>
                             ))}
                         </span>
                     </ul>
-                )
-                )}
+                })}
             </div>
 
-            <div className='flex justify-between w-max gap-x-5 my-3'>
+
+            <div className='flex justify-center sm:w-max gap-x-5 my-3 w-full'>
                 <img src={appleStore} className='h-10' />
                 <img src={googlePlay} className='h-10' />
             </div>

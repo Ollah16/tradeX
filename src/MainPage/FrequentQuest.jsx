@@ -56,7 +56,7 @@ const FrequentQuest = () => {
                         <span>{question.question}</span>
                     </h2>
 
-                    <p className={`pl-5 overflow-hidden transition-height duration-500 ease-in-out ${question.isClicked ? 'md:h-20 h-28' : 'h-0'}`}>
+                    <p className={`pl-5 overflow-hidden transition-height duration-500 ease-in-out ${question.isClicked ? 'md:h-20 h-32' : 'h-0'}`}>
                         {question.answer}
                     </p>
                 </div>

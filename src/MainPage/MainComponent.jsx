@@ -73,7 +73,7 @@ const MainComponent = ({ navDrop, handleDrop }) => {
 
                     <TradexDataComp />
                 </div>
-                <div className='bg-gray-500/5 mx-[-28px]'>
+                <div className='bg-gray-500/5 mx-[-28px] mb-[-0.75rem]'>
                     <div className='max-w-[900px] mx-auto'>
                         <TradexInformation />
 

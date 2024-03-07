@@ -8,7 +8,7 @@ const TradexInformation = () => {
     return (
         <div className='p-7'>
             <div>
-                <h4 className='text-2xl my-4 text-gray-950/80 font-bold'>
+                <h4 className='text-2xl my-5 text-gray-950/80 font-bold'>
                     What is TRADEX’s Currency Converter?
                 </h4>
                 <p className='text-gray-900'>
@@ -17,7 +17,7 @@ const TradexInformation = () => {
             </div>
 
             <div>
-                <h4 className='text-2xl my-4 text-gray-950/80 font-bold'>
+                <h4 className='text-2xl my-5 text-gray-950/80 font-bold'>
                     How to use TRADEX’s Currency Converter
                 </h4>
                 <p className='text-gray-900'>
@@ -26,7 +26,7 @@ const TradexInformation = () => {
             </div>
 
             <div>
-                <h4 className='text-2xl my-4 text-gray-950/80 font-bold'>Why use TRADEX’s Currency Converter?</h4>
+                <h4 className='text-2xl my-5 text-gray-950/80 font-bold'>Why use TRADEX’s Currency Converter?</h4>
             </div>
 
             <div>
