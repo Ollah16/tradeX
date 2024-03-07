@@ -52,9 +52,8 @@ const Footer = () => {
 
     return (
         <div className='px-10 py-5 bg-black/95'>
-            <div className={`after:content-[''] after:h-[1px] after:w-full after:bg-blue-200/25 flex flex-col gap-y-3`}>
-                <div className={`text-3xl pl-9 font-semibold text-blue-200 cursor-pointer 
- uppercase`}>TradeX</div>
+            <div className={`after:content-[''] after:h-[5px] after:w-full after:bg-blue-200/25 flex flex-col gap-y-3`}>
+                <div className={`text-3xl pl-9 font-semibold text-blue-200 cursor-pointer uppercase`}>TradeX</div>
             </div>
 
             <div className='flex flex-col sm:grid sm:grid-cols-3 md:flex md:flex-row justify-between gap-x-12 py-2'>
