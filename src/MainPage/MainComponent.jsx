@@ -7,8 +7,9 @@ import TradexInformation from './TradexInformation'
 import DownloadLinkComp from './DownloadLinkComp'
 import FrequentQuest from './FrequentQuest'
 
-const MainComponent = ({ navDrop, handleDrop }) => {
+const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover }) => {
     const [amount, setAmount] = useState(20)
+    const [allCurrency, setAllCurr] = useState([])
     const [currencyOne, setCurrOne] = useState('Eth')
     const [currencyTwo, setCurrTwo] = useState('Btc')
     const [equivalent, setEquiv] = useState(30)
@@ -18,6 +19,10 @@ const MainComponent = ({ navDrop, handleDrop }) => {
     // useEffect(() => {
     //     handleFetchRate()
     // }, [])
+
+    useEffect(() => {
+        handleConverSion()
+    }, [amount])
 
     useEffect(() => {
         const handleScreen = () => navDrop ?
@@ -38,21 +43,34 @@ const MainComponent = ({ navDrop, handleDrop }) => {
 
     const handleFetchRate = () => {
 
-        axios.get('http://api.exchangeratesapi.io/v1/latest?access_key=9bb02106792c2333039f2342f89e5740', {
+        axios.get('https://developer.oanda.com/exchange-rates-api/', {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer 08e02877-d52c-4465-bb73-ae673b74e023`
             }
         })
             .then((response) => {
-                console.log(response.data);
+                setAllCurr(response.data);
             })
             .catch((error) => {
                 console.error('Error fetching exchange rates:', error);
             });
     };
 
+    const handleConverSion = () => {
+        let currMatch = allCurrency.find((curr, index) => curr.currency === currencyOne)
+        setEquiv(20 * amount)
+    }
+
+    const handleSwitch = () => {
+        setCurrOne(currencyTwo)
+        setCurrTwo(currencyOne)
+        setAmount(equivalent)
+        setEquiv(amount)
+    }
+
     return (
-        <div ref={mainRef} className={`py-3 p-7 w-full before:h-20 before:content-[''] before:block transition-colors duration-300 ease-in-out relative z-5 ${navDrop ? 'bg-black/10' : ''}`}>
+        <div ref={mainRef} className={`py-3 p-7 w-full before:h-20 before:content-[''] before:block transition-colors duration-300 ease-in-out relative z-5 ${navDrop || menuHover || helpHover || langHover ? 'bg-black/15' : ''}`}>
 
             <div className={`${navDrop ? 'pointer-events-none' : ''}`}>
                 <div className={`md:max-w-[1100px] md:mx-auto`}>
@@ -73,6 +91,7 @@ const MainComponent = ({ navDrop, handleDrop }) => {
                         equivalent={equivalent}
                         isAdvanceRate={isAdvanceRate}
                         setRate={setRate}
+                        handleSwitch={handleSwitch}
                     />
 
                     <TradexDataComp

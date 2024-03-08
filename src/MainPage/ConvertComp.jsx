@@ -5,7 +5,7 @@ import InputsComponent from './InputsComponent';
 
 const ConvertComp = (props) => {
 
-    const { amount, equivalent, setAmount, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate } = props
+    const { amount, equivalent, setAmount, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch } = props
 
 
 
@@ -22,6 +22,7 @@ const ConvertComp = (props) => {
                 setAmount={setAmount}
                 isAdvanceRate={isAdvanceRate}
                 setRate={setRate}
+                handleSwitch={handleSwitch}
             />
 
             <ChartComponent

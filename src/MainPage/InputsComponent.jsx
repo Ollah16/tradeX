@@ -3,7 +3,8 @@ import { QuestionMarkCircleIcon, ChevronLeftIcon, ChevronRightIcon, CalendarIcon
 import { LuArrowUpDown } from "react-icons/lu";
 
 const InputsComponent = (props) => {
-    const { amount, setAmount, equivalent, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate } = props
+    const { amount, setAmount, equivalent, currencyOne, currencyTwo,
+        setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch } = props
 
 
     const [interBank, setInter] = useState([
@@ -90,7 +91,7 @@ const InputsComponent = (props) => {
 
                 </div>
 
-                <span className='sm:relative flex justify-center items-center absolute bottom-2 right-7 sm:bottom-0 sm:right-0 cursor-pointer'><span className='text-green-800 mr-[2px] text-sm sm:hidden'>Switch</span><LuArrowUpDown className='text-green-800 transform rotate-90 w-4 md:h-7 cursor-pointer sm:inline-block sm:absolute md:bottom-3 h-4 sm:bottom-5' /></span>
+                <span onClick={() => handleSwitch()} className='sm:relative flex justify-center items-center absolute bottom-2 right-7 sm:bottom-0 sm:right-0 cursor-pointer'><span className='text-green-800 mr-[2px] text-xs sm:hidden'>Switch</span><LuArrowUpDown className='text-green-800 transform rotate-90 w-4 md:h-7 cursor-pointer sm:inline-block sm:absolute md:bottom-3 h-3 sm:bottom-5' /></span>
 
 
                 <div className='flex flex-col gap-x-8 gap-y-3'>
@@ -157,7 +158,7 @@ const InputsComponent = (props) => {
             </div>
 
             <div>
-                <p className='text-xs text-gray-500'>TRADEX's currency calculator tools use TRADEX Rates™, the touchstone FX rates compiled from leading market data contributors.</p>
+                <p className='text-xs text-gray-500 my-1'>TRADEX's currency calculator tools use TRADEX Rates™, the touchstone FX rates compiled from leading market data contributors.</p>
             </div>
         </div>
     </div >)

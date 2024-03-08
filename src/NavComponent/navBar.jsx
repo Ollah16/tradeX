@@ -7,7 +7,7 @@ import NavExpand from './NavExpand'
 
 const NavBar = (props) => {
 
-    const { navDrop, handleDrop } = props
+    const { navDrop, handleDrop, menuBtnRef, helpLiRef, langRef, menuHover, helpHover, langHover } = props
 
     useEffect(() => {
         const handleBody = () =>
@@ -16,23 +16,30 @@ const NavBar = (props) => {
         handleBody()
     }, [navDrop])
 
-    return (<div className='w-full bg-black/95 h-max fixed z-20'>
-        <div className='mx-auto w-full flex justify-between py-3 px-10 items-center drop-shadow-2xl bg-transparent'>
+    return (<div className='w-full bg-black/95 h-max fixed z-30'>
+        <div className='mx-auto w-full flex justify-between px-10 items-center drop-shadow-2xl bg-transparent relative'>
             <div className='flex items-center'>
                 <NavBrand />
-                <NavMenu />
+                <NavMenu menuBtnRef={menuBtnRef} menuHover={menuHover} />
             </div>
-            <NavList />
+            <NavList
+                helpLiRef={helpLiRef}
+                langRef={langRef}
+                helpHover={helpHover}
+                langHover={langHover}
+            />
             <MenuBtn
                 handleDrop={handleDrop}
                 navDrop={navDrop}
             />
         </div>
+
         <NavExpand
             navDrop={navDrop}
             handleDrop={handleDrop}
 
         />
+
     </div >)
 }
 
