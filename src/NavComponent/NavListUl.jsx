@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { ChevronDownIcon, GlobeAltIcon, QuestionMarkCircleIcon, UserIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon, ChevronRightIcon, GlobeAltIcon, QuestionMarkCircleIcon, UserIcon } from '@heroicons/react/outline'
 import { useRef } from 'react'
 
 const NavListUl = (props) => {
 
-    const { helpLiRef, langRef, helpHover, langHover, language } = props
+    const { helpLiRef, langRef, helpHover, langHover, language, handleInner } = props
     const ulRef = useRef(null)
     const [positionX, setPosition] = useState(1)
 
-    useEffect(() => {
-        const handleMouseEnter = (event, li) => {
-            const mouseX = event.clientX;
-            const elementX = li.getBoundingClientRect().left;
-            const position = mouseX < elementX ? 'left' : 'right';
-            setPosition(position);
-        };
+    // useEffect(() => {
+    //     const handleMouseEnter = (event, li) => {
+    //         const mouseX = event.clientX;
+    //         const elementX = li.getBoundingClientRect().left;
+    //         const position = mouseX < elementX ? 'left' : 'right';
+    //         setPosition(position);
+    //     };
 
-        console.log('hi')
-        const liElements = document.querySelectorAll('.liElement');
+    //     const liElements = document.querySelectorAll('.liElement');
 
-        liElements.forEach((li, index) => {
-            li.addEventListener('mouseenter', (event) => {
-                handleMouseEnter(event, li);
-            });
-        });
+    //     liElements.forEach((li, index) => {
+    //         li.addEventListener('mouseenter', (event) => {
+    //             handleMouseEnter(event, li);
+    //         });
+    //     });
 
-        return () => {
-            liElements.forEach((li) => {
-                li.removeEventListener('mouseenter', handleMouseEnter);
-            });
-        };
-    }, []);
+    //     return () => {
+    //         liElements.forEach((li) => {
+    //             li.removeEventListener('mouseenter', handleMouseEnter);
+    //         });
+    //     };
+    // }, []);
 
 
 
@@ -42,7 +41,7 @@ const NavListUl = (props) => {
                 md:after:content-[''] md:after:absolute md:after:top-full md:after:h-1
                 md:after:bg-white md:after:transition-width md:after:duration-500 after:ease-in-out after:transition-left
                 md:hover:after:left-0 md:hover:after:w-full md:after:w-0 md:after:left-2/4 py-3`}>
-                    <UserIcon className='h-4 text-blue-200 md:mx-1 mr-4' />
+                    <UserIcon className='h-4 text-blue-200 md:mx-1 mr-1' />
                     <span>Data Services Login</span>
                 </div>
             </li>
@@ -53,9 +52,11 @@ const NavListUl = (props) => {
                 md:after:content-[''] md:after:absolute md:after:top-full md:after:h-1
                 md:after:bg-white md:after:transition-width md:after:duration-500 md:after:ease-in-out md:after:transition-left
                 ${helpHover ? 'md:after:left-0 md:after:w-full' : 'md:after:w-0 md:after:left-2/4'}`}
+                    onClick={() => handleInner('help')}
                     ref={helpLiRef}>
-                    <QuestionMarkCircleIcon className='h-4 text-blue-200 md:mx-1 mr-4' />
+                    <QuestionMarkCircleIcon className='h-4 text-blue-200 md:mx-1 mr-1' />
                     <span>Help</span>
+                    <span className='grow flex justify-end md:hidden'> <ChevronRightIcon className='text-blue-200 h-4' /></span>
                     <ChevronDownIcon className={`h-4 text-blue-200 mx-1 transition-transform ease-in-out duration-500 hidden md:inline-block ${helpHover ? 'rotate-x-180' : ''}`} />
                 </div>
             </li >
