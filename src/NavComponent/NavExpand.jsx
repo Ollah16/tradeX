@@ -1,17 +1,12 @@
 import React from 'react'
 import NavListUl from './NavListUl'
-import { XIcon } from '@heroicons/react/outline'
 
-const NavExpand = ({ navDrop, handleDrop }) => {
+const NavExpand = ({ navDrop }) => {
 
 
     return (
-        <div className={`md:hidden bg-gray-900/95 z-10 top-0
-         fixed transition-right duration-500 ease-in-out h-full w-8/12 p-5 ${navDrop ? 'right-0' : '-right-[500px]'}`}>
-            <div className='flex justify-end mr-5'>
-                <XIcon onClick={() => handleDrop(!navDrop)} className='text-blue-200 h-7 w-7 cursor-pointer' />
-            </div>
-
+        <div className={`md:hidden bg-gray-900 z-10 top-auto
+         fixed transition-left duration-500 ease-in-out h-full w-7/12 py-5 ${navDrop ? 'left-0' : '-left-[500px]'}`}>
             <NavListUl />
         </div>
     )

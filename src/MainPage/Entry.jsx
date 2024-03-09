@@ -18,6 +18,7 @@ const Entry = () => {
     const [menuHover, setHover] = useState(false)
     const [helpHover, setHelpHover] = useState(false)
     const [langHover, setLangHover] = useState(false)
+    const [language, handleLang] = useState('EN')
 
     useEffect(() => {
 
@@ -106,6 +107,7 @@ const Entry = () => {
                 menuHover={menuHover}
                 helpHover={helpHover}
                 langHover={langHover}
+                language={language}
             />
 
             <MenuContainerComponent menuRef={menuRef} menuHover={menuHover} />
@@ -117,7 +119,7 @@ const Entry = () => {
                 langHover={langHover} />
 
             <HelpContainerComp helpHover={helpHover} helpContent={helpContent} />
-            <LanguageListComp langContent={langContent} langHover={langHover} />
+            <LanguageListComp langContent={langContent} langHover={langHover} handleLang={handleLang} />
             <Footer />
             <FooterBottom />
         </div>

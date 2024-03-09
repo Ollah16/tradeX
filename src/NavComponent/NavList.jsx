@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import NavListUl from './NavListUl'
 
 const NavList = (props) => {
-    const { helpLiRef, langRef, helpHover, langHover } = props
+    const { helpLiRef, langRef, helpHover, langHover, language } = props
 
     return (
         <div className='md:block hidden'>
@@ -11,6 +11,7 @@ const NavList = (props) => {
                 langRef={langRef}
                 helpHover={helpHover}
                 langHover={langHover}
+                language={language}
             />
         </div >
     )

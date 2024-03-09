@@ -13,7 +13,7 @@ const NavMenu = ({ menuBtnRef, menuHover }) => {
                 border-none bg-transparent py-5 text-blue-200 text-lg flex items-center justify-between w-16`}
             >
                 <span>Menu</span>
-                <ChevronDownIcon className={`text-inherit h-4 ${menuHover ? 'rotate-x-180' : ''} transition-transform ease-in-out duration-300`} />
+                <ChevronDownIcon className={`text-inherit h-4 ${menuHover ? 'rotate-x-180' : ''} transition-transform ease-in-out duration-500`} />
             </button>
         </div >
     )
