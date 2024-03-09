@@ -6,7 +6,7 @@ import InnerCancelButtonComp from './InnerCancelButtonComp';
 const HelpContainerComp = ({ helpHover, helpContent, innerCategory, handleInner, param }) => {
 
     return (
-        <div className={`absolute w-full md:w-96 ${innerCategory === 'help' ? 'right-0' : 'right-[-500px]'}
+        <div className={`absolute w-full md:w-96 ${innerCategory === 'help' ? 'right-0' : 'right-[-900px]'}
          text-blue-200 md:text-black md:-96 h-max md:right-[132px] md:bg-white p-5 pt-0 md:fixed z-20 transition-top transition-right ease-in-out duration-500 
         ${helpHover ? 'md:top-[75px]' : 'md:top-[-100%]'}`} ref={helpContent}>
 
