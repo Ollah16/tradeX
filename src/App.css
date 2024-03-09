@@ -13,3 +13,10 @@ div.cursor-pointer:hover svg:last-of-type:not(.userIcon) {
 .questionMark:hover .learnmore {
   display: inline-block;
 }
+
+
+
+.after-width:hover::after {
+  left: 20%;
+  width: 100%;
+}

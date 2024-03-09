@@ -15,7 +15,7 @@ const LanguageListComp = ({ langContent, langHover }) => {
     ])
 
     return (
-        <div className={`text-black w-96 h-max right-14 bg-white p-5 py-3 fixed z-20 transition-top ease-in-out duration-500 ${langHover ? 'top-[75px]' : 'top-[-100%]'}`} ref={langContent}>
+        <div className={`text-black w-96 h-max right-[48px] bg-white p-5 py-3 fixed z-20 transition-top ease-in-out duration-500 ${langHover ? 'top-[75px]' : 'top-[-100%]'}`} ref={langContent}>
             <ul>
                 {langList.map((lang, index) => (
                     <li className={`after:content-[''] after:bg-gray-500/25 after:h-px after:w-full after:inline-block after:my-2 text-base cursor-pointer`} key={index}>{lang}</li>

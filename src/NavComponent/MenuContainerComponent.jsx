@@ -47,8 +47,8 @@ const MenuContainerComponent = ({ menuRef, menuHover }) => {
                 <div className='p-5 flex flex-col gap-y-2'>
                     <div className={`flex flex-col gap-y-2 after:w-full after:bg-gray-500/35 after:h-px after:content-[''] after:inline-block 
                 uppercase text-base tracking-wide font-bold text-black/80`}>About Tradex</div>
-                    <div className='text-lg text-black/90 hover:text-blue-600 transition-color duration-100 cursor-pointer'>Group</div>
-                    <div className='text-lg text-black/90 hover:text-blue-600 transition-color duration-100 cursor-pointer'>Market pulse</div>
+                    <div className='text-lg text-black/90 hover:text-blue-600 transition-color duration-100 cursor-pointer w-max ease-in-out'>Group</div>
+                    <div className='text-lg text-black/90 hover:text-blue-600 transition-color duration-100 cursor-pointer w-max ease-in-out'>Market pulse</div>
                 </div>
             </div>
 
