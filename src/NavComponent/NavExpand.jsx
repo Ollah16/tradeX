@@ -8,8 +8,8 @@ import HelpContainerComp from './HelpContainerComp'
 const NavExpand = ({ navDrop, menuList, expandLang, handleInner, innerCategory, langList, handleLang }) => {
 
     return (
-        <div className={`md:hidden bg-gray-900 z-10 top-[75px] bottom-0 overflow-x-hidden overflow-y-scroll
-        absolute transition-left h-auto duration-500 ease-in-out w-7/12 ${navDrop ? 'left-0' : '-left-[500px]'}`}>
+        <div className={`md:hidden bg-gray-900 z-10 top-[75px] bottom-0 overflow-x-hidden overflow-y-auto
+        absolute transition-left h-full duration-500 ease-in-out w-9/12 ${navDrop ? 'left-0' : '-left-[500px]'}`}>
             <div className={`md:hidden bg-inherit w-full py-5 absolute transition-left duration-500 ease-in-out ${innerCategory ? '-left-[500px]' : 'left-0'}`}>
                 <NavListUl handleInner={handleInner} />
                 <NavMenuContent menuList={menuList} />
