@@ -153,13 +153,12 @@ const Entry = () => {
     const handleDrop = () => {
         setDrop(!navDrop)
         setInner('')
-        console.log('hello')
     }
 
 
 
     return (
-        <div className="min-h-[100vh] bg-gray-50 overflow-hidden">
+        <div className="min-h-[100vh] bg-gray-50 overflow-hidden relative">
             <NavBar navDrop={navDrop}
                 handleDrop={handleDrop}
                 menuBtnRef={menuBtnRef}

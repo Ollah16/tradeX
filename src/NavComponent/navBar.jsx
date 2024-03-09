@@ -17,7 +17,7 @@ const NavBar = (props) => {
         handleBody()
     }, [navDrop])
 
-    return (<div className='w-full bg-black/95 h-max fixed z-30'>
+    return (<div className='w-full bg-black/95 h-max relative z-30'>
         <div className='mx-auto w-full flex justify-between md:px-10 px-5 items-center drop-shadow-2xl bg-transparent relative'>
             <div className='flex items-center relative'>
                 <NavCloseButton

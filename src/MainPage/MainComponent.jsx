@@ -70,7 +70,7 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
     }
 
     return (
-        <div ref={mainRef} className={`py-3 p-7 w-full before:h-20 before:content-[''] before:block transition-colors duration-300 ease-in-out relative z-5 ${navDrop || menuHover || helpHover || langHover ? 'bg-black/15' : ''}`}>
+        <div ref={mainRef} className={`py-3 p-7 w-full transition-colors duration-300 ease-in-out relative z-5 ${navDrop || menuHover || helpHover || langHover ? 'bg-black/15' : ''}`}>
 
             <div className={`${navDrop ? 'pointer-events-none' : ''}`}>
                 <div className={`md:max-w-[1100px] md:mx-auto`}>
