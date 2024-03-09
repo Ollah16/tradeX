@@ -4,7 +4,7 @@ import { useRef } from 'react'
 
 const NavListUl = (props) => {
 
-    const { helpLiRef, langRef, helpHover, langHover, language, handleInner } = props
+    const { helpLiRef, langRef, helpHover, langHover, language, handleInner, param } = props
     const ulRef = useRef(null)
     const [positionX, setPosition] = useState(1)
 
@@ -33,6 +33,7 @@ const NavListUl = (props) => {
 
 
 
+    console.log(window.innerWidth)
 
     return (
         <ul className='list-none p-0 m-0 md:flex-row flex md:items-center flex-col justify-between items-start' ref={ulRef}>
@@ -52,7 +53,7 @@ const NavListUl = (props) => {
                 md:after:content-[''] md:after:absolute md:after:top-full md:after:h-1
                 md:after:bg-white md:after:transition-width md:after:duration-500 md:after:ease-in-out md:after:transition-left
                 ${helpHover ? 'md:after:left-0 md:after:w-full' : 'md:after:w-0 md:after:left-2/4'}`}
-                    onClick={() => handleInner('help')}
+                    onClick={window.innerWidth < 768 ? () => handleInner(param) : null}
                     ref={helpLiRef}>
                     <QuestionMarkCircleIcon className='h-4 text-blue-200 md:mx-1 mr-1' />
                     <span>Help</span>

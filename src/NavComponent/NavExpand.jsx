@@ -8,10 +8,13 @@ import HelpContainerComp from './HelpContainerComp'
 const NavExpand = ({ navDrop, menuList, expandLang, handleInner, innerCategory, langList, handleLang }) => {
 
     return (
-        <div className={`md:hidden bg-gray-900 z-10 top-[75px] bottom-0 overflow-x-hidden
-        fixed transition-left h-auto duration-500 ease-in-out w-9/12 ${navDrop ? 'left-0' : '-left-[900px]'}`}>
+        <div className={`md:hidden bg-gray-900 z-10 top-[75px] bottom-0 overflow-hidden
+        fixed transition-left h-auto duration-500 ease-in-out w-8/12 ${navDrop ? 'left-0' : '-left-[900px]'}`}>
             <div className={`md:hidden bg-inherit w-full py-5 absolute overflow-y-scroll transition-left duration-500 ease-in-out ${innerCategory ? '-left-[500px]' : 'left-0'}`}>
-                <NavListUl handleInner={handleInner} />
+                <NavListUl
+                    handleInner={handleInner}
+                    param={'help'}
+                />
                 <NavMenuContent menuList={menuList} />
 
                 <div onClick={() => handleInner('language')}

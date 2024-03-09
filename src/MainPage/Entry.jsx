@@ -60,7 +60,6 @@ const Entry = () => {
 
     }, [language])
 
-
     useEffect(() => {
 
         const menuButton = menuBtnRef.current;
@@ -113,14 +112,16 @@ const Entry = () => {
 
     useEffect(() => {
 
-        const handleResize = () => {
-            if (window.innerWidth > 768) {
-                handleDrop(false)
-            }
-        }
         window.addEventListener('resize', handleResize)
     }, [])
 
+
+    const handleResize = () => {
+        if (window.innerWidth > 768) {
+            handleDrop(false)
+        }
+
+    }
 
     const handleMenuMouseEnter = () => {
         setHover(true);
