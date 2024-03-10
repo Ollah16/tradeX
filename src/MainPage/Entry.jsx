@@ -116,7 +116,7 @@ const Entry = () => {
 
 
     const handleResize = () => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 768 && navDrop) {
             handleDrop(false)
         }
 
@@ -151,6 +151,7 @@ const Entry = () => {
     }
 
     const handleDrop = () => {
+
         setDrop(!navDrop)
         setInner('')
     }

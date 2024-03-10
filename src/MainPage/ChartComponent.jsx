@@ -21,7 +21,6 @@ const ChartComponent = (props) => {
         const chartDef = chartRef.current.getContext('2d');
         const currentDay = new Date()
 
-
         const rateChart = new Chart(chartDef, {
             type: 'line',
             data: {
@@ -49,27 +48,27 @@ const ChartComponent = (props) => {
     }, []);
 
     return (
-        <div className='border border-gray-300 rounded-lg p-7 w-full flex md:flex-col flex-row gap-x-5 gap-y-5'>
+        <div className='border border-gray-300 rounded-lg p-7 w-full flex md:flex-col flex-row gap-x-5 gap-y-5 h-full'>
 
-            <div className='w-6/12 md:w-full'>
-                <canvas ref={chartRef} className='w-full'></canvas>
+            <div className='w-6/12 md:w-full chartContainer h-1/2'>
+                <canvas ref={chartRef} className='h-full w-full'></canvas>
             </div>
 
 
-            <div className='w-6/12 md:w-full grow'>
+            <div className='w-6/12 md:w-full grow h-1/2'>
 
                 <table className='table-auto w-full h-full'>
 
                     <thead>
                         <tr>
                             <th></th>
-                            <th className='text-sm font-normal text-gray-600'>Bid {amount} {currency}</th>
-                            <th className='text-sm font-normal text-gray-600'>Sell {amount} {currency}</th>
+                            <th className='text-sm font-normal text-gray-900/60'>Bid {amount} {currency}</th>
+                            <th className='text-sm font-normal text-gray-900/60'>Sell {amount} {currency}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tabList.map((tab, index) => (
-                            <tr key={index} className='text-sm text-center text-gray-900 border-collapse border-gray-300 border border-x-0 leading-normal'>
+                            <tr key={index} className='text-sm text-center text-gray-900/60 border-collapse border-gray-300 border border-x-0 leading-normal'>
                                 <td>{tab.name}</td>
                                 <td>{tab.content}</td>
                                 <td>{tab.content}</td>

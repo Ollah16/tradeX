@@ -33,7 +33,6 @@ const NavListUl = (props) => {
 
 
 
-    console.log(window.innerWidth)
 
     return (
         <ul className='list-none p-0 m-0 md:flex-row flex md:items-center flex-col justify-between items-start' ref={ulRef}>
