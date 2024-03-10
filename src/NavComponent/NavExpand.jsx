@@ -9,7 +9,7 @@ const NavExpand = ({ navDrop, menuList, expandLang, handleInner, innerCategory, 
 
     return (
         <div className={`md:hidden bg-gray-900 z-10 top-[75px] bottom-0 overflow-hidden overflow-y-auto
-        fixed transition-left h-auto duration-500 ease-in-out w-8/12 ${navDrop ? 'left-0' : '-left-[900px]'}`}>
+        fixed transition-left h-auto duration-500 ease-in-out w-8/12 ${navDrop ? 'left-0' : 'left-[-900px]'}`}>
             <div className={`md:hidden bg-inherit w-full py-5 absolute transition-left duration-500 ease-in-out ${innerCategory ? '-left-[500px]' : 'left-0'}`}>
                 <NavListUl
                     handleInner={handleInner}
