@@ -3,7 +3,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline'
 
 const NavMenu = ({ menuBtnRef, menuHover }) => {
     return (
-        <div className={`lg:flex relative py-0 hidden items-center h-full before:content-[''] before:bg-white before:h-6 before:w-px before:inline-block before:mx-4 mb-[-5px]`} >
+        <div className={`md:flex relative py-0 hidden items-center h-full before:content-[''] before:bg-white before:h-6 before:w-px before:inline-block before:mx-4 mb-[-5px]`} >
             <button
                 ref={menuBtnRef}
                 className={`
