@@ -111,7 +111,6 @@ const Entry = () => {
     }, []);
 
     useEffect(() => {
-
         window.addEventListener('resize', handleResize)
     }, [])
 

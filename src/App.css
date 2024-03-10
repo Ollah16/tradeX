@@ -5,20 +5,3 @@
 .questionMark:hover .learnmore {
   display: inline-block;
 }
-
-.moveBg:after {
-  background: linear-gradient(to right, rgb(242, 239, 239) 0%, black 0%);
-  transition: background 1500ms ease-in-out;
-  background-size: 0%;
-}
-
-.moveBg:hover::after {
-  background: linear-gradient(to right, rgb(242, 239, 239), black 100%);
-  background-size: 100%;
-}
-
-.moveBg:not(:hover)::after {
-  background: linear-gradient(to right, black, rgb(242, 239, 239) 100%);
-  background-position: 0% 100%;
-
-}
