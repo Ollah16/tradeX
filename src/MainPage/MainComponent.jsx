@@ -39,18 +39,19 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
 
     const handleDropFunc = () => {
         handleDrop(!navDrop)
+
     }
+
 
     const handleFetchRate = async () => {
 
-        await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/map ', {
+        await axios.get('https://tradex-iota.vercel.app/fetchRate/liveRate ', {
             headers: {
-                'X-CMC_PRO_API_KEY': `${process.ENV.COINMARKET}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
         })
             .then((response) => {
-                const { data } = response.data
+                const data = response.data
                 setCurrOne(data[0].symbol)
                 setCurrTwo(data[1].symbol)
                 setAllCurr(data.slice(0, 50))
