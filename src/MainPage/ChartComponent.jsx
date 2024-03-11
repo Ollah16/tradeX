@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto';
 
 
 const ChartComponent = (props) => {
-    const { equivalent, amount, currency } = props
+    const { equivalent, amount, currencyOne, currencyTwo } = props
     const chartRef = useRef(null)
 
     const [tabList, setTabList] = useState([
@@ -62,16 +62,16 @@ const ChartComponent = (props) => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th className='text-sm font-normal text-gray-900/60'>Bid {amount} {currency}</th>
-                            <th className='text-sm font-normal text-gray-900/60'>Sell {amount} {currency}</th>
+                            <th className='text-xs font-normal text-gray-900/70 py-2'>Bid <span className='text-gray-800/50'>Sell {amount} {currencyOne}</span></th>
+                            <th className='text-xs font-normal text-gray-900/70 py-2'>Ask <span className='text-gray-800/50'>Buy {amount} {currencyTwo}</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         {tabList.map((tab, index) => (
                             <tr key={index} className='text-sm text-center text-gray-900/60 border-collapse border-gray-300 border border-x-0 leading-normal'>
-                                <td>{tab.name}</td>
-                                <td>{tab.content}</td>
-                                <td>{tab.content}</td>
+                                <td className='py-1'>{tab.name}</td>
+                                <td className='py-1'>{tab.content}</td>
+                                <td className='py-1'>{tab.content}</td>
                             </tr>
                         ))}
                     </tbody>

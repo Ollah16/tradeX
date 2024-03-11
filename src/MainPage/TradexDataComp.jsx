@@ -13,8 +13,8 @@ const TradexDataComp = (props) => {
                 <div className='rounded-lg border border-gray-300 h-max col-span-2 md:col-span-1'>
                     <section className={`after:content-[''] after:w-full after:inline-block after:h-px after:bg-gray-500/45`}>
                         <div className='p-7 pb-0'>
-                            <div className='text-xl font-bold'>{`Convert ${currencyOne.charAt(0).toUpperCase() + currencyOne.slice(1)} to ${currencyTwo.charAt(0).toUpperCase() + currencyTwo.slice(1)} `}</div>
-                            <div className='flex justify-around mt-3 text-base font-extrabold'><span>{currencyOne.toUpperCase()}</span> <span>{currencyTwo.toUpperCase()}</span></div>
+                            <div className='text-xl font-bold'>{`Convert ${currencyOne} to ${currencyTwo} `}</div>
+                            <div className='flex justify-around mt-3 text-base font-extrabold'><span>{currencyOne}</span> <span>{currencyTwo}</span></div>
                         </div>
                     </section>
                 </div>
@@ -22,8 +22,8 @@ const TradexDataComp = (props) => {
                 <div className='rounded-lg border border-gray-300 h-max col-span-2 md:col-span-1'>
                     <section className={`after:content-[''] after:w-full after:inline-block after:h-px after:bg-gray-500/45`}>
                         <div className='p-7 pb-0'>
-                            <div className='text-xl font-bold'>{`Convert ${currencyTwo.charAt(0).toUpperCase() + currencyOne.slice(1)} to ${currencyOne.charAt(0).toUpperCase() + currencyTwo.slice(1)} `}</div>
-                            <div className='flex justify-around mt-3 text-base font-extrabold'><span>{currencyTwo.toUpperCase()}</span> <span>{currencyOne.toUpperCase()}</span></div>
+                            <div className='text-xl font-bold'>{`Convert ${currencyTwo} to ${currencyOne} `}</div>
+                            <div className='flex justify-around mt-3 text-base font-extrabold'><span>{currencyTwo}</span> <span>{currencyOne}</span></div>
                         </div>
                     </section>
                 </div>

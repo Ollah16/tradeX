@@ -5,7 +5,7 @@ import InputsComponent from './InputsComponent';
 
 const ConvertComp = (props) => {
 
-    const { amount, equivalent, setAmount, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch } = props
+    const { allCurrency, amount, equivalent, setAmount, currencyOne, currencyTwo, setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch } = props
 
 
 
@@ -13,6 +13,7 @@ const ConvertComp = (props) => {
         <div className="flex flex-col gap-y-10 my-5 md:gap-x-10 justify-between relative md:grid md:grid-cols-3">
             <InputsComponent
                 navDrop={navDrop}
+                allCurrency={allCurrency}
                 currencyOne={currencyOne}
                 currencyTwo={currencyTwo}
                 setCurrOne={setCurrOne}

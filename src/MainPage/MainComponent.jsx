@@ -8,17 +8,17 @@ import DownloadLinkComp from './DownloadLinkComp'
 import FrequentQuest from './FrequentQuest'
 
 const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover }) => {
-    const [amount, setAmount] = useState(20)
+    const [amount, setAmount] = useState(1)
     const [allCurrency, setAllCurr] = useState([])
-    const [currencyOne, setCurrOne] = useState('Eth')
-    const [currencyTwo, setCurrTwo] = useState('Btc')
+    const [currencyOne, setCurrOne] = useState()
+    const [currencyTwo, setCurrTwo] = useState()
     const [equivalent, setEquiv] = useState(30)
     const mainRef = useRef(null)
     const [isAdvanceRate, setRate] = useState(false)
 
-    // useEffect(() => {
-    //     handleFetchRate()
-    // }, [])
+    useEffect(() => {
+        handleFetchRate()
+    }, [])
 
     useEffect(() => {
         handleConverSion()
@@ -29,28 +29,31 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
             mainRef.current.addEventListener('click', handleDropFunc)
             :
             mainRef.current.removeEventListener('click', handleDropFunc);
-
         handleScreen()
 
         return () => {
             mainRef.current.removeEventListener('click', handleDropFunc);
         };
+
     }, [navDrop]);
 
     const handleDropFunc = () => {
         handleDrop(!navDrop)
     }
 
-    const handleFetchRate = () => {
+    const handleFetchRate = async () => {
 
-        axios.get('https://developer.oanda.com/exchange-rates-api/', {
+        await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/map ', {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': `Bearer 08e02877-d52c-4465-bb73-ae673b74e023`
-            }
+                'X-CMC_PRO_API_KEY': 'e2543b24-b41f-44a9-8a2f-49a6f1c107ad',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
         })
             .then((response) => {
-                setAllCurr(response.data);
+                const { data } = response.data
+                setCurrOne(data[0].symbol)
+                setCurrTwo(data[1].symbol)
+                setAllCurr(data.slice(0, 50))
             })
             .catch((error) => {
                 console.error('Error fetching exchange rates:', error);
@@ -58,7 +61,7 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
     };
 
     const handleConverSion = () => {
-        let currMatch = allCurrency.find((curr, index) => curr.currency === currencyOne)
+        // let currMatch = allCurrency.find((curr, index) => curr.currency === currencyOne)
         setEquiv(20 * amount)
     }
 
@@ -70,7 +73,9 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
     }
 
     return (
-        <div ref={mainRef} className={`py-3 p-7 w-full md:before:h-20 md:before:content-[''] md:before:inline-block transition-colors duration-500 ease-in-out relative z-5 ${navDrop || menuHover || helpHover || langHover ? 'bg-black/15' : ''}`}>
+        <div ref={mainRef} className={`
+        ${allCurrency.length ? 'opacity-100' : 'opacity-0'} transition-opacity
+        py-3 p-7 w-full md:before:h-20 md:before:content-[''] md:before:inline-block transition-colors duration-500 ease-in-out relative z-5 ${navDrop || menuHover || helpHover || langHover ? 'bg-black/15' : ''}`}>
 
             <div className={`${navDrop ? 'pointer-events-none' : ''}`}>
                 <div className={`md:max-w-[1100px] md:mx-auto`}>
@@ -81,6 +86,7 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
                     />
 
                     <ConvertComp
+                        allCurrency={allCurrency}
                         navDrop={navDrop}
                         amount={amount}
                         setAmount={setAmount}

@@ -4,7 +4,7 @@ import { LuArrowUpDown } from "react-icons/lu";
 
 const InputsComponent = (props) => {
     const { amount, setAmount, equivalent, currencyOne, currencyTwo,
-        setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch } = props
+        setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch, allCurrency } = props
 
 
     const [interBank, setInter] = useState([
@@ -78,10 +78,15 @@ const InputsComponent = (props) => {
         <div className='flex flex-col gap-y-3'>
             <div className='flex gap-x-5 sm:flex-row flex-col gap-y-5'>
                 <div className='flex flex-col gap-x-8 gap-y-3'>
+
                     <select
                         onInput={(event) => setCurrOne(event.target.value)}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}>
-                        <option>{currencyOne}</option>
+
+                        {allCurrency.map((curr, index) => (
+                            <option key={index}>{index === 0 ? currencyOne : curr.symbol}</option>
+                        ))}
+
                     </select>
 
                     <input
@@ -99,7 +104,9 @@ const InputsComponent = (props) => {
                         onInput={(event) => setCurrTwo(event.target.value)}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}
                     >
-                        <option>{currencyTwo}</option>
+                        {allCurrency.map((curr, index) => (
+                            <option key={index}>{index === 0 ? currencyTwo : curr.symbol}</option>
+                        ))}
                     </select>
 
                     <input
