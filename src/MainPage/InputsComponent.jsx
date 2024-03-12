@@ -30,7 +30,6 @@ const InputsComponent = (props) => {
     const handleDate = (event) => {
         let newDay = day;
         let newMonth = month;
-        let currDate = new Date().getDate()
 
         switch (event) {
             case 'next':
@@ -73,7 +72,6 @@ const InputsComponent = (props) => {
 
     }
 
-
     return (<div className='rounded-lg shadow-xl shadow-gray-300 col-span-2 p-7 w-full relative'>
         <div className='flex flex-col gap-y-3'>
             <div className='flex gap-x-5 sm:flex-row flex-col gap-y-5'>
@@ -92,7 +90,7 @@ const InputsComponent = (props) => {
                     <input
                         value={amount}
                         onInput={(event) => setAmount(event.target.value)}
-                        className={`h-14 w-full text-2xl font-medium transition-colors ease -in -out duration-200 ${navDrop ? 'bg-inherit' : 'bg-slate-100'} p-3 focus: outline-none hover:border-gray-700 hover: bg-slate-200 rounded-t border-b-2 border-black transition-colors duration-200`} />
+                        className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-slate-100'} p-3 focus:outline-none hover:bg-gray-400/30 bg-gray-400/15 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
 
                 </div>
 
@@ -112,7 +110,7 @@ const InputsComponent = (props) => {
                     <input
                         value={equivalent}
                         onInput={(event) => setAmount(event.target.value)}
-                        className={`h-14 w-full text-2xl font-medium transition-colors ease -in -out duration-200 ${navDrop ? 'bg-inherit' : 'bg-slate-100'} p-3 focus: outline-none hover:border-gray-700 hover: bg-slate-200 rounded-t border-b-2 border-black transition-colors duration-200`} />
+                        className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-slate-100'} p-3 focus:outline-none hover:bg-gray-400/30 bg-gray-400/15 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
                 </div>
             </div>
 

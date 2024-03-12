@@ -197,7 +197,8 @@ const Entry = () => {
                 langHover={langHover}
                 handleLang={handleLang}
                 langList={langList}
-                innerCategory={innerCategory} />
+                innerCategory={innerCategory}
+                language={language} />
             <Footer />
             <FooterBottom />
         </div>

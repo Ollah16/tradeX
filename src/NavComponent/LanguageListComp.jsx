@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import InnerCancelButtonComp from './InnerCancelButtonComp'
+import { CheckIcon } from '@heroicons/react/outline'
 
-const LanguageListComp = ({ langContent, langHover, handleLang, langList, innerCategory, handleInner, param }) => {
+const LanguageListComp = ({ langContent, langHover, handleLang, langList, innerCategory, handleInner, param, language }) => {
 
 
     return (
@@ -18,7 +19,12 @@ const LanguageListComp = ({ langContent, langHover, handleLang, langList, innerC
                         mr-[-1.25rem] ml-[-1.25rem] px-5 transition-colors duration-500 ease-in-out hover:bg-white/10
                     before:absolute before:w-0 before:h-px before:bottom-0 before:content-[''] before:inline before:bg-black hover:before:w-full before:transition-width before:duration-500 before:left-0 before:ease-in-out
                      after:left-0 after:bottom-0 after:absolute after:bg-gray-400/45
-                    after:content-[''] after:h-px after:w-full after:inline-block after:my-0 text-base cursor-pointer`} key={index}>{lang.name}</li>
+                    after:content-[''] after:h-px after:w-full after:inline-block after:my-0 text-base cursor-pointer`} key={index}>
+                        <div className='flex items-center'>
+                            {language === lang.abbr && <span className='inline ml-[-15px]'><CheckIcon className='h-4 text-green-800' /></span>}
+                            <span className='inline ml-2'>{lang.name}</span>
+                        </div>
+                    </li>
                 ))}
             </ul>
         </div>
