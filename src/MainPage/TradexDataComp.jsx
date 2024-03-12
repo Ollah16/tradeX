@@ -29,7 +29,7 @@ const TradexDataComp = (props) => {
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody className='p-1'>
                                 {freqNum && freqNum.map((num, index) => (
                                     <tr key={index}>
                                         <td className='py-2 flex items-center justify-center underline text-blue-800/80 hover:text-blue-800 transition-colors duration-200 ease-in-out cursor-pointer'>{num} {currencyOne} <ChevronRightIcon className='h-4 inline' /> </td>

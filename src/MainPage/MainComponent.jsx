@@ -10,8 +10,8 @@ import FrequentQuest from './FrequentQuest'
 const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover }) => {
     const [amount, setAmount] = useState(1)
     const [allCurrency, setAllCurr] = useState([])
-    const [currencyOne, setCurrOne] = useState()
-    const [currencyTwo, setCurrTwo] = useState()
+    const [currencyOne, setCurrOne] = useState('')
+    const [currencyTwo, setCurrTwo] = useState('')
     const [equivalent, setEquiv] = useState(30)
     const mainRef = useRef(null)
     const [isAdvanceRate, setRate] = useState(false)
@@ -75,7 +75,6 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
 
     return (
         <div ref={mainRef} className={`
-        ${allCurrency.length ? 'opacity-100' : 'opacity-0'} transition-opacity
         py-3 p-7 w-full md:before:h-20 md:before:content-[''] md:before:inline-block transition-colors duration-500 ease-in-out relative z-5 ${navDrop || menuHover || helpHover || langHover ? 'bg-black/15' : ''}`}>
 
             <div className={`${navDrop ? 'pointer-events-none' : ''}`}>
