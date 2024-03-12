@@ -14,7 +14,7 @@ const TradexDataComp = (props) => {
 
             <div className={`${isAdvanceRate ? 'block row-span-3 col-span-2' : 'hidden'} grid grid-cols-2 gap-x-5 gap-y-8`}>
 
-                <div className='rounded-lg border border-gray-300 col-span-1'>
+                <div className='rounded-lg border border-gray-300 md:col-span-1 col-span-2'>
                     <section className={``}>
 
                         <table className='table-auto w-full text-center'>
@@ -41,7 +41,7 @@ const TradexDataComp = (props) => {
                     </section>
                 </div>
 
-                <div className='rounded-lg border border-gray-300 col-span-1'>
+                <div className='rounded-lg border border-gray-300 md:col-span-1 col-span-2'>
                     <section className={``}>
 
                         <table className='table-auto w-full text-center'>
