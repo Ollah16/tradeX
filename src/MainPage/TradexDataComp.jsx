@@ -78,7 +78,7 @@ const TradexDataComp = (props) => {
 
             <div className={`flex gap-4 ${isAdvanceRate ? 'row-span-3 flex-col' : 'flex-col md:flex-row'}`}>
 
-                <div className={`rounded-lg border border-gray-300 p-7 w-full ${isAdvanceRate ? 'h-1/2' : 'h-full'}`}>
+                <div className={`rounded-lg border border-gray-300 p-7 w-full ${isAdvanceRate ? 'h-1/2' : 'h-48'}`}>
                     <div className='text-xl font-medium mb-1'>FX data API</div>
 
                     <div className='text-base text-gray-600 my-3'>Our API can be integrated into your ERP, giving you access to accurate, historical FX data and rates.</div>
@@ -86,7 +86,7 @@ const TradexDataComp = (props) => {
                     <Link className='text-blue-500 underline opacity-80 hover:opacity-100'>More about our API</Link>
                 </div>
 
-                <div className={`rounded-lg border border-gray-300 p-7 w-full ${isAdvanceRate ? 'h-1/2' : 'h-full'}`}>
+                <div className={`rounded-lg border border-gray-300 p-7 w-full ${isAdvanceRate ? 'h-1/2' : 'h-48'}`}>
 
                     <div className='text-xl font-medium mb-1'>Historical FX rates</div>
 
