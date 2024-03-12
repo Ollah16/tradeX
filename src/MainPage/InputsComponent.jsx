@@ -90,7 +90,7 @@ const InputsComponent = (props) => {
                     <input
                         value={amount}
                         onInput={(event) => setAmount(event.target.value)}
-                        className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-slate-100'} p-3 focus:outline-none hover:bg-gray-400/30 bg-gray-400/15 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
+                        className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30  rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
 
                 </div>
 
@@ -110,7 +110,7 @@ const InputsComponent = (props) => {
                     <input
                         value={equivalent}
                         onInput={(event) => setAmount(event.target.value)}
-                        className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-slate-100'} p-3 focus:outline-none hover:bg-gray-400/30 bg-gray-400/15 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
+                        className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
                 </div>
             </div>
 
@@ -118,9 +118,9 @@ const InputsComponent = (props) => {
                 <div className='flex justify-between items-center md:w-6/12 relative w-full overflow-hidden gap-x-1'>
                     <label className='w-1/12 text-sm' htmlFor='dateInp'>Date</label>
 
-                    <div className='h-11 border-gray-400 border-solid hover:border-gray-700 flex border justify-evenly items-center rounded w-9/12 overflow-hidden relative'>
+                    <div className='h-11 border-gray-400 lg:gap-1 border-solid hover:border-gray-700 flex border justify-evenly items-center rounded sm:w-10/12 lg:w-9/12 overflow-hidden relative px-1'>
                         <button onClick={() => handleDate('prev')} className='hover:bg-gray-300 transition-colors duration-200'><ChevronLeftIcon className='text-black h-5' /></button>
-                        <label className='flex justify-between items-center gap-x-3' htmlFor='dateInp'>
+                        <label className='flex justify-between items-center gap-x-1' htmlFor='dateInp'>
                             <span>{fullDate}</span> <CalendarIcon className='h-4 inline-block cursor-pointer' />
                         </label>
                         <input type='date'
