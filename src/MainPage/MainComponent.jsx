@@ -12,7 +12,7 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
     const [allCurrency, setAllCurr] = useState([])
     const [currencyOne, setCurrOne] = useState('')
     const [currencyTwo, setCurrTwo] = useState('')
-    const [equivalent, setEquiv] = useState(30)
+    const [amountOne, setAmountOne] = useState()
     const mainRef = useRef(null)
     const [isAdvanceRate, setRate] = useState(false)
 
@@ -21,8 +21,9 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
     }, [])
 
     useEffect(() => {
-        handleConverSion()
-    }, [amount])
+        handleConversion()
+    }, [allCurrency])
+
 
     useEffect(() => {
         const handleScreen = () => navDrop ?
@@ -42,10 +43,11 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
 
     }
 
-
     const handleFetchRate = () => {
 
-        axios.get('https://tradex-iota.vercel.app/fetchRate/liveRate ', {
+        // axios.get('https://tradex-iota.vercel.app/fetchRate/liveRate ', {
+        axios.get('http://localhost:9080/fetchRate/liveRate ', {
+
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -54,23 +56,60 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
                 const data = response.data
                 setCurrOne(data[0].symbol)
                 setCurrTwo(data[1].symbol)
-                setAllCurr(data.slice(0, 50))
+                setAllCurr(data.slice(0, 100))
             })
             .catch((error) => {
                 console.error('Error fetching exchange rates:', error);
             });
+
     };
 
-    const handleConverSion = () => {
-        // let currMatch = allCurrency.find((curr, index) => curr.currency === currencyOne)
-        setEquiv(20 * amount)
+    const handleConversion = () => {
+        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
+        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
+        setAmountOne(Number(amount * currPriceOne / currPriceTwo))
+    }
+
+    const handleCurrOne = (event) => {
+        setCurrOne(event)
+        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === event)?.quote?.USD?.price
+        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
+
+        setAmountOne(amount * currPriceOne / currPriceTwo)
+    }
+
+    const handleCurrTwo = (event) => {
+        setCurrTwo(event)
+        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
+        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === event)?.quote?.USD?.price;
+        setAmount(amountOne * currPriceTwo / currPriceOne)
+    }
+
+    const handleAmount = (event) => {
+        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
+        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
+        setAmount(event)
+        setAmountOne(event * currPriceOne / currPriceTwo)
+    }
+
+    const handleAmountOne = (event) => {
+        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
+        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
+        setAmountOne(event)
+        setAmount(event * currPriceTwo / currPriceOne)
     }
 
     const handleSwitch = () => {
         setCurrOne(currencyTwo)
         setCurrTwo(currencyOne)
-        setAmount(equivalent)
-        setEquiv(amount)
+        setAmount(amountOne)
+        setAmountOne(amount)
+    }
+
+    const handlePercentage = (event) => {
+
+        setAmountOne(amountOne * event)
+
     }
 
     return (
@@ -79,6 +118,7 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
 
             <div className={`${navDrop ? 'pointer-events-none' : ''}`}>
                 <div className={`md:max-w-[1100px] md:mx-auto`}>
+
                     < ConvertIntro
                         amount={amount}
                         currencyOne={currencyOne}
@@ -86,21 +126,24 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
                     />
 
                     <ConvertComp
+                        handlePercentage={handlePercentage}
                         allCurrency={allCurrency}
                         navDrop={navDrop}
                         amount={amount}
-                        setAmount={setAmount}
+                        handleAmount={handleAmount}
                         currencyOne={currencyOne}
                         currencyTwo={currencyTwo}
-                        setCurrOne={setCurrOne}
-                        setCurrTwo={setCurrTwo}
-                        equivalent={equivalent}
+                        handleCurrOne={handleCurrOne}
+                        handleCurrTwo={handleCurrTwo}
+                        handleAmountOne={handleAmountOne}
+                        amountOne={amountOne}
                         isAdvanceRate={isAdvanceRate}
                         setRate={setRate}
                         handleSwitch={handleSwitch}
                     />
 
                     <TradexDataComp
+                        allCurrency={allCurrency}
                         isAdvanceRate={isAdvanceRate}
                         currencyOne={currencyOne}
                         currencyTwo={currencyTwo}

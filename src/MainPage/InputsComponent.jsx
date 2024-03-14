@@ -3,8 +3,8 @@ import { QuestionMarkCircleIcon, ChevronLeftIcon, ChevronRightIcon, CalendarIcon
 import { LuArrowUpDown } from "react-icons/lu";
 
 const InputsComponent = (props) => {
-    const { amount, setAmount, equivalent, currencyOne, currencyTwo,
-        setCurrOne, setCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch, allCurrency } = props
+    const { amount, handleAmount, amountOne, currencyOne, currencyTwo, handleAmountOne,
+        handleCurrOne, handleCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch, allCurrency, handlePercentage } = props
 
 
     const [interBank, setInter] = useState([
@@ -78,18 +78,19 @@ const InputsComponent = (props) => {
                 <div className='flex flex-col gap-x-8 gap-y-3'>
 
                     <select
-                        onInput={(event) => setCurrOne(event.target.value)}
+                        onInput={(event) => handleCurrOne(event.target.value)}
+                        value={currencyOne}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}>
 
                         {allCurrency.map((curr, index) => (
-                            <option key={index}>{index === 0 ? currencyOne : curr.symbol}</option>
+                            <option key={index}>{curr.symbol}</option>
                         ))}
 
                     </select>
 
                     <input
                         value={amount}
-                        onInput={(event) => setAmount(event.target.value)}
+                        onInput={(event) => handleAmount(event.target.value)}
                         className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30  rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
 
                 </div>
@@ -99,18 +100,20 @@ const InputsComponent = (props) => {
 
                 <div className='flex flex-col gap-x-8 gap-y-3'>
                     <select
-                        onInput={(event) => setCurrTwo(event.target.value)}
+                        onInput={(event) => handleCurrTwo(event.target.value)}
+                        value={currencyTwo}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}
                     >
                         {allCurrency.map((curr, index) => (
-                            <option key={index}>{index === 0 ? currencyTwo : curr.symbol}</option>
+                            <option key={index}>{curr.symbol}</option>
                         ))}
                     </select>
 
                     <input
-                        value={equivalent}
-                        onInput={(event) => setAmount(event.target.value)}
+                        value={amountOne ? amountOne : ''}
+                        onInput={(event) => handleAmountOne(Number(event.target.value))}
                         className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
+
                 </div>
             </div>
 
@@ -137,7 +140,9 @@ const InputsComponent = (props) => {
 
                 <div className='flex justify-between items-center md:w-6/12 relative w-full'>
                     <label htmlFor='bankRate' className='text-sm'>Preview interbank rate</label>
-                    <select type='date' className={`rounded h-11 w-4/12 bg-inherit text-sm focus:outline-none border border-gray-400 border-solid hover:border-gray-700 p-2 mx-1`} id='bankRate'>
+                    <select
+                        onInput={(event) => handlePercentage(event.target.value)}
+                        className={`rounded h-11 w-4/12 bg-inherit text-sm focus:outline-none border border-gray-400 border-solid hover:border-gray-700 p-2 mx-1`} id='bankRate'>
                         {interBank.map((bank, index) => (
                             <option key={index}>{bank}</option>
                         ))}
