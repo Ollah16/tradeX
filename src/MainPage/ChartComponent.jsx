@@ -5,6 +5,8 @@ import Chart from 'chart.js/auto';
 const ChartComponent = (props) => {
     const { amount, amountOne, currencyOne, currencyTwo } = props
     const chartRef = useRef(null)
+    const [amountEquiv, setAmEQ] = useState()
+    const [amountInp, setAmIN] = useState()
 
     const [tabList, setTabList] = useState([
         { name: 'Min' },
@@ -12,8 +14,8 @@ const ChartComponent = (props) => {
         { name: 'Max' }
     ]);
 
-    const amountEquiv = amountOne ? parseFloat(amountOne.toFixed(2)) : null
-    const amountInp = amount ? parseFloat(amount.toFixed(2)) : null
+
+
 
     let [months, setMonths] = useState(['Jan',
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
@@ -22,6 +24,10 @@ const ChartComponent = (props) => {
     useEffect(() => {
         const chartDef = chartRef.current.getContext('2d');
         const currentDay = new Date()
+
+
+        setAmEQ(typeof amountOne === 'number' ? parseFloat(amountOne.toFixed(2)) : null)
+        setAmIN(typeof amount === 'number' ? parseFloat(amount.toFixed(2)) : null)
 
         const rateChart = new Chart(chartDef, {
             type: 'line',
