@@ -45,8 +45,7 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
 
     const handleFetchRate = () => {
 
-        // axios.get('https://tradex-iota.vercel.app/fetchRate/liveRate ', {
-        axios.get('http://localhost:9080/fetchRate/liveRate ', {
+        axios.get('https://tradex-iota.vercel.app/fetchRate/liveRate ', {
 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
