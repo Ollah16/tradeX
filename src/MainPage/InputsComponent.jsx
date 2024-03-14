@@ -90,7 +90,7 @@ const InputsComponent = (props) => {
 
                     <input
                         value={amount}
-                        onInput={(event) => handleAmount(event.target.value)}
+                        onInput={(event) => handleAmount(Number(event.target.value))}
                         className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30  rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
 
                 </div>

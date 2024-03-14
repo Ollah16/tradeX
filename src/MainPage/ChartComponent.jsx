@@ -53,6 +53,7 @@ const ChartComponent = (props) => {
         };
     }, [amount, amountOne]);
 
+
     return (
         <div className='border border-gray-300 rounded-lg p-7 w-full flex md:flex-col flex-row gap-x-5 gap-y-5 h-full'>
 
@@ -68,16 +69,16 @@ const ChartComponent = (props) => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th className='text-xs font-normal text-gray-900/70 py-2'>Bid <span className='text-gray-800/50'>Sell {amountInp} {currencyOne}</span></th>
-                            <th className='text-xs font-normal text-gray-900/70 py-2'>Ask <span className='text-gray-800/50'>Buy {amountInp} {currencyTwo}</span></th>
+                            <th className='text-xs font-normal text-gray-900/70 py-2'>Bid <span className='text-gray-800/50'>Sell {!isNaN(amountInp) && amountInp} {currencyOne}</span></th>
+                            <th className='text-xs font-normal text-gray-900/70 py-2'>Ask <span className='text-gray-800/50'>Buy {!isNaN(amountInp) && amountInp} {currencyTwo}</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         {tabList.map((tab, index) => (
                             <tr key={index} className='text-sm text-center text-gray-900/60 border-collapse border-gray-300 border border-x-0 leading-normal'>
                                 <td className='py-1'>{tab.name}</td>
-                                <td className='py-1'>{amountEquiv}</td>
-                                <td className='py-1'>{amountEquiv}</td>
+                                {!isNaN(amountEquiv) && <td className='py-1'>{amountEquiv}</td>}
+                                {!isNaN(amountEquiv) && <td className='py-1'>{amountEquiv}</td>}
                             </tr>
                         ))}
                     </tbody>
