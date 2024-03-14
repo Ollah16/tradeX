@@ -15,8 +15,8 @@ const TradexDataComp = (props) => {
     useEffect(() => {
         const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)
         const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)
-        setCalcOne(currPriceTwo?.quote?.USD?.price / currPriceOne?.quote?.USD?.price)
-        setCalcTwo(currPriceOne?.quote?.USD?.price / currPriceTwo?.quote?.USD?.price)
+        setCalcOne(currPriceOne?.quote?.USD?.price / currPriceTwo?.quote?.USD?.price)
+        setCalcTwo(currPriceTwo?.quote?.USD?.price / currPriceOne?.quote?.USD?.price)
 
     }, [currencyOne, currencyTwo])
 
