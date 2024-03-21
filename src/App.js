@@ -10,8 +10,6 @@ function App() {
         path='/'
         element={<Entry />}
       />
-
-
     </Routes>
   );
 }

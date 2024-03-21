@@ -22,9 +22,9 @@ const ChartComponent = (props) => {
     ])
 
     useEffect(() => {
+        chartRef.current.style.width = '100%'
         const chartDef = chartRef.current.getContext('2d');
         const currentDay = new Date()
-
 
         setAmEQ(typeof amountOne === 'number' ? parseFloat(amountOne.toFixed(2)) : null)
         setAmIN(typeof amount === 'number' ? parseFloat(amount.toFixed(2)) : null)
@@ -47,12 +47,12 @@ const ChartComponent = (props) => {
                 ]
             }
         });
+        console.log(rateChart)
 
         return () => {
             rateChart.destroy();
         };
     }, [amount, amountOne]);
-
 
     return (
         <div className='border border-gray-300 rounded-lg p-7 w-full flex md:flex-col flex-row gap-x-5 gap-y-5 h-full'>
