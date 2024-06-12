@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
-import NavBar from '../NavComponent/navBar';
-import MainComponent from './MainComponent';
-import Footer from '../FooterComponent/Footer';
-import FooterBottom from '../FooterComponent/FooterBottom';
-import MenuContainerComponent from '../NavComponent/MenuContainerComponent';
-import HelpContainerComp from '../NavComponent/HelpContainerComp';
-import LanguageListComp from '../NavComponent/LanguageListComp';
-import NavExpand from '../NavComponent/NavExpand';
+import NavBar from './NavComponent/navBar';
+import MainComponent from './MainPage/MainComponent';
+import Footer from './FooterComponent/Footer';
+import FooterBottom from './FooterComponent/FooterBottom';
+import MenuContainerComponent from './NavComponent/MenuContainerComponent';
+import HelpContainerComp from './NavComponent/HelpContainerComp';
+import LanguageListComp from './NavComponent/LanguageListComp';
+import NavExpand from './NavComponent/NavExpand';
 
-const Entry = () => {
+const HomePage = () => {
     const [navDrop, setDrop] = useState(false)
     const menuRef = useRef(null)
     const menuBtnRef = useRef(null)
@@ -21,7 +21,7 @@ const Entry = () => {
     const [langHover, setLangHover] = useState(false)
     const [expandLang, setELang] = useState()
 
-    const [menuList, setMenuLi] = useState([
+    const menuList = [
         {
             title: 'TRADING',
             heading: 'Trading',
@@ -37,9 +37,9 @@ const Entry = () => {
             headingThree: 'Exchange rates API',
             contentThree: 'Our Exchange Rates API delivers data on 200 + currencies, commodities and precious metals.'
         }
-    ])
+    ]
 
-    const [langList, setLang] = useState([
+    const langList = [
         { name: 'English', abbr: 'EN' },
         { name: 'Deutsche', abbr: 'DE' },
         { name: 'Español', abbr: 'ES' },
@@ -49,16 +49,16 @@ const Entry = () => {
         { name: 'PУ', abbr: 'PY' },
         { name: '繁體中文', abbr: '繁體' },
         { name: '日本', abbr: 'JP' }
-    ])
+    ]
+
     const [language, handleLang] = useState(langList[0].abbr)
 
     const [innerCategory, setInner] = useState()
 
     useEffect(() => {
-        const findLang = langList.find(a => a.abbr === language)
-        setELang(findLang.name)
-
-    }, [language])
+        const { name } = langList.find(a => a.abbr === language)
+        setELang(name)
+    }, [language, langList])
 
     useEffect(() => {
 
@@ -111,16 +111,19 @@ const Entry = () => {
     }, []);
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize)
-    }, [])
+        const handleResize = () => {
+            if (window.innerWidth > 768 && navDrop) {
+                handleDrop(false)
+            }
 
-
-    const handleResize = () => {
-        if (window.innerWidth > 768 && navDrop) {
-            handleDrop(false)
         }
 
-    }
+        window.addEventListener('resize', handleResize)
+
+        return (() => {
+            window.removeEventListener('resize', handleResize)
+        })
+    }, [])
 
     const handleMenuMouseEnter = () => {
         setHover(true);
@@ -151,7 +154,6 @@ const Entry = () => {
     }
 
     const handleDrop = () => {
-
         setDrop(!navDrop)
         setInner('')
     }
@@ -199,10 +201,11 @@ const Entry = () => {
                 langList={langList}
                 innerCategory={innerCategory}
                 language={language} />
+
             <Footer />
             <FooterBottom />
         </div>
     )
 }
 
-export default Entry
+export default HomePage

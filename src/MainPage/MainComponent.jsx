@@ -8,6 +8,7 @@ import DownloadLinkComp from './DownloadLinkComp'
 import FrequentQuest from './FrequentQuest'
 
 const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover }) => {
+
     const [amount, setAmount] = useState(1)
     const [allCurrency, setAllCurr] = useState([])
     const [currencyOne, setCurrOne] = useState('')
@@ -21,26 +22,36 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
     }, [])
 
     useEffect(() => {
+        const handleConversion = () => {
+            const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
+            const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
+            setAmountOne(Number(amount * currPriceOne / currPriceTwo))
+        }
+
         handleConversion()
-    }, [allCurrency])
+
+    }, [allCurrency, amount, currencyOne, currencyTwo])
 
 
     useEffect(() => {
+
+        const mainCurr = mainRef.current
+
         const handleScreen = () => navDrop ?
-            mainRef.current.addEventListener('click', handleDropFunc)
+            mainCurr.addEventListener('click', handleDropFunc)
             :
-            mainRef.current.removeEventListener('click', handleDropFunc);
+            mainCurr.removeEventListener('click', handleDropFunc);
+
         handleScreen()
 
         return () => {
-            mainRef.current.removeEventListener('click', handleDropFunc);
+            mainCurr.removeEventListener('click', handleDropFunc);
         };
 
     }, [navDrop]);
 
     const handleDropFunc = () => {
         handleDrop(!navDrop)
-
     }
 
     const handleFetchRate = () => {
@@ -62,12 +73,6 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
             });
 
     };
-
-    const handleConversion = () => {
-        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
-        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
-        setAmountOne(Number(amount * currPriceOne / currPriceTwo))
-    }
 
     const handleCurrOne = (event) => {
         setCurrOne(event)

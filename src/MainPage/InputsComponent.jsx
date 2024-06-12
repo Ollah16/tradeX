@@ -7,25 +7,39 @@ const InputsComponent = (props) => {
         handleCurrOne, handleCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch, allCurrency, handlePercentage } = props
 
 
-    const [interBank, setInter] = useState([
+    const interBank = [
         '+/-0%',
         '+/-1%',
         '+/-2% (Typical Atm Rate)',
         '+/-3% (Typical Credit card Rate)',
         '+/-4%',
         '+/-5% (Typical Kiosk Rate)'
-    ])
+    ]
 
     const currentDate = new Date();
-    let [day, setDate] = useState(currentDate.getDate());
-    let [month, setMonth] = useState(currentDate.getMonth() + 1);
-    let [year, setYear] = useState(currentDate.getFullYear())
-    let [months, setMonths] = useState(['Jan',
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ])
-    let [fullDate, setFDate] = useState(`${day < 10 ? '0' + day : day}/${months[month].toUpperCase()}/${year}`)
+    const [day, setDate] = useState('');
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('')
+    const months = ['Jan', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    let [fullDate, setFDate] = useState('')
 
+    useEffect(() => {
 
+        const handleCalendar = () => {
+            let date = currentDate.getDate()
+            let newMonth = currentDate.getMonth() + 1
+            let newYear = currentDate.getFullYear()
+            let newFullDate = `${day < 10 ? '0' + day : day}/${months[month].toUpperCase()}/${year}`
+
+            setDate(date)
+            setMonth(newMonth)
+            setYear(newYear)
+            setFDate(newFullDate)
+        }
+
+        handleCalendar()
+
+    }, [currentDate])
 
     const handleDate = (event) => {
         let newDay = day;
@@ -82,7 +96,7 @@ const InputsComponent = (props) => {
                         value={currencyOne}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}>
 
-                        {allCurrency.map((curr, index) => (
+                        {allCurrency?.map((curr, index) => (
                             <option key={index}>{curr.symbol}</option>
                         ))}
 
@@ -91,6 +105,7 @@ const InputsComponent = (props) => {
                     <input
                         value={amount}
                         onInput={(event) => handleAmount(Number(event.target.value))}
+                        placeholder='hello'
                         className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30  rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
 
                 </div>
@@ -104,7 +119,7 @@ const InputsComponent = (props) => {
                         value={currencyTwo}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}
                     >
-                        {allCurrency.map((curr, index) => (
+                        {allCurrency?.map((curr, index) => (
                             <option key={index}>{curr.symbol}</option>
                         ))}
                     </select>

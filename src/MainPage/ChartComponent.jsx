@@ -3,23 +3,21 @@ import Chart from 'chart.js/auto';
 
 
 const ChartComponent = (props) => {
+
     const { amount, amountOne, currencyOne, currencyTwo } = props
     const chartRef = useRef(null)
     const [amountEquiv, setAmEQ] = useState()
     const [amountInp, setAmIN] = useState()
 
-    const [tabList, setTabList] = useState([
+    const tabList = [
         { name: 'Min' },
         { name: 'Avg' },
         { name: 'Max' }
-    ]);
+    ]
 
-
-
-
-    let [months, setMonths] = useState(['Jan',
+    let months = ['Jan',
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ])
+    ]
 
     useEffect(() => {
         chartRef.current.style.width = '100%'
@@ -52,7 +50,7 @@ const ChartComponent = (props) => {
         return () => {
             rateChart.destroy();
         };
-    }, [amount, amountOne]);
+    }, [amount, amountOne, months]);
 
     return (
         <div className='border border-gray-300 rounded-lg p-7 w-full flex md:flex-col flex-row gap-x-5 gap-y-5 h-full'>

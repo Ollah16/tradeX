@@ -1,6 +1,6 @@
 import './App.css'
 import { Route, Routes } from "react-router-dom";
-import Entry from './MainPage/Entry';
+import HomePage from './HomePage';
 
 function App() {
 
@@ -8,7 +8,7 @@ function App() {
     <Routes>
       <Route
         path='/'
-        element={<Entry />}
+        element={<HomePage />}
       />
     </Routes>
   );
