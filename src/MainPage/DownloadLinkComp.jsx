@@ -10,12 +10,12 @@ const DownloadLinkComp = () => {
                 <p className='my-1 uppercase text-gray-700 tracking-widest font-normal text-sm'>Convert on the go</p>
                 <p className='my-2 text-xl font-bold text-gray-900/90 text-center'>Download the TRADEX Currency Converter app</p>
                 <div className='flex justify-between gap-x-7 items-center'>
-                    <span className='bg-black h-max flex p-1 px-2 rounded items-center cursor-pointer'>
-                        <img src={appleStore} className='h-8' />
-                    </span>
-                    <span className='bg-black h-max flex p-1 px-2 rounded items-center cursor-pointer'>
-                        <img src={googlePlay} className='h-8' />
-                    </span>
+                    <div className='bg-black h-max flex p-1 px-2 rounded items-center cursor-pointer'>
+                        <img src={appleStore} alt='/' className='h-8' />
+                    </div>
+                    <div className='bg-black h-max flex p-1 px-2 rounded items-center cursor-pointer'>
+                        <img src={googlePlay} alt='/' className='h-8' />
+                    </div>
                 </div>
             </div>
         </div>

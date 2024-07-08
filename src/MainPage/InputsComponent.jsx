@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { QuestionMarkCircleIcon, ChevronLeftIcon, ChevronRightIcon, CalendarIcon, PrinterIcon } from '@heroicons/react/outline'
 import { LuArrowUpDown } from "react-icons/lu";
 
 const InputsComponent = (props) => {
     const { amount, handleAmount, amountOne, currencyOne, currencyTwo, handleAmountOne,
         handleCurrOne, handleCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch, allCurrency, handlePercentage } = props
-
 
     const interBank = [
         '+/-0%',
@@ -16,20 +15,20 @@ const InputsComponent = (props) => {
         '+/-5% (Typical Kiosk Rate)'
     ]
 
-    const currentDate = new Date();
     const [day, setDate] = useState('');
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('')
-    const months = ['Jan', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     let [fullDate, setFDate] = useState('')
+    const { cDate, months } = useMemo(() => { return { cDate: new Date(), months: ['Jan', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] } }, []);
+
 
     useEffect(() => {
 
         const handleCalendar = () => {
-            let date = currentDate.getDate()
-            let newMonth = currentDate.getMonth() + 1
-            let newYear = currentDate.getFullYear()
-            let newFullDate = `${day < 10 ? '0' + day : day}/${months[month].toUpperCase()}/${year}`
+            let date = cDate.getDate()
+            let newMonth = cDate.getMonth() + 1
+            let newYear = cDate.getFullYear()
+            let newFullDate = `${date < 10 ? '0' + date : date}/${months[newMonth]?.toUpperCase()}/${newYear}`
 
             setDate(date)
             setMonth(newMonth)
@@ -39,15 +38,17 @@ const InputsComponent = (props) => {
 
         handleCalendar()
 
-    }, [currentDate])
+    }, [cDate, months])
 
     const handleDate = (event) => {
         let newDay = day;
         let newMonth = month;
+        const newDate = new Date().getDate()
 
         switch (event) {
             case 'next':
                 newDay = day >= new Date(year, month, 0).getDate() ? 1 : day + 1;
+                newDay = newDay > newDate ? day : newDay
                 if (newDay === 1) {
                     newMonth = month === 12 ? 1 : month + 1;
                 }
@@ -67,24 +68,23 @@ const InputsComponent = (props) => {
         setMonth(newMonth);
 
         const formattedDate = `${newDay < 10 ? '0' + newDay : newDay}/${months[newMonth].toUpperCase()}/${year}`;
-
         setFDate(formattedDate);
     };
 
-    const handleDateInp = (event) => {
-        const extDate = new Date(event)
+    const handleDateInp = (dateValue) => {
+        const extDate = new Date(dateValue)
         let day = extDate.getDate() + 1
         let month = extDate.getMonth() + 1
         let currDate = new Date().getDate()
         if (day > currDate) return
 
         const formattedDate = `${day < 10 ? '0' + day : day}/${months[month].toUpperCase()}/${extDate.getFullYear()}`;
-
         setDate(day)
         setMonth(month)
         setFDate(formattedDate);
 
     }
+
 
     return (<div className='rounded-lg shadow-xl shadow-gray-300 col-span-2 p-7 w-full relative'>
         <div className='flex flex-col gap-y-3'>
@@ -92,6 +92,7 @@ const InputsComponent = (props) => {
                 <div className='flex flex-col gap-x-8 gap-y-3'>
 
                     <select
+                        aria-label='currency one'
                         onInput={(event) => handleCurrOne(event.target.value)}
                         value={currencyOne}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}>
@@ -103,6 +104,8 @@ const InputsComponent = (props) => {
                     </select>
 
                     <input
+                        aria-label='currency one'
+                        type='number'
                         value={amount}
                         onInput={(event) => handleAmount(Number(event.target.value))}
                         placeholder='hello'
@@ -115,6 +118,7 @@ const InputsComponent = (props) => {
 
                 <div className='flex flex-col gap-x-8 gap-y-3'>
                     <select
+                        aria-label='currency two'
                         onInput={(event) => handleCurrTwo(event.target.value)}
                         value={currencyTwo}
                         className={`h-14 w-full border-gray-400 bg-inherit border-solid rounded border p-3 focus: outline-none hover:border-gray-700`}
@@ -125,6 +129,8 @@ const InputsComponent = (props) => {
                     </select>
 
                     <input
+                        type='number'
+                        aria-label='currency two'
                         value={amountOne ? amountOne : ''}
                         onInput={(event) => handleAmountOne(Number(event.target.value))}
                         className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
@@ -134,20 +140,24 @@ const InputsComponent = (props) => {
 
             <div className='flex flex-col sm:flex-row gap-y-5 gap-x-10 w-full justify-between items-center my-4 relative'>
                 <div className='flex justify-between items-center md:w-6/12 relative w-full overflow-hidden gap-x-1'>
-                    <label className='w-1/12 text-sm' htmlFor='dateInp'>Date</label>
+                    <span className='w-1/12 text-sm cursor-default'>Date</span>
 
                     <div className='h-11 border-gray-400 lg:gap-1 border-solid hover:border-gray-700 flex border justify-evenly items-center rounded sm:w-10/12 lg:w-9/12 overflow-hidden relative px-1'>
-                        <button onClick={() => handleDate('prev')} className='hover:bg-gray-300 transition-colors duration-200'><ChevronLeftIcon className='text-black h-5' /></button>
-                        <label className='flex justify-between items-center gap-x-1' htmlFor='dateInp'>
-                            <span>{fullDate}</span> <CalendarIcon className='h-4 inline-block cursor-pointer' />
+                        <button onClick={() => handleDate('prev')} aria-label='previous day btn' className='hover:bg-gray-300 transition-colors duration-200'><ChevronLeftIcon className='text-black h-5' /></button>
+
+
+                        <label className='flex justify-between items-center gap-x-1 w-fit relative' htmlFor='dateInput'>
+                            {fullDate}  <CalendarIcon className='h-4 inline-block cursor-pointer' />
                         </label>
-                        <input type='date'
+                        <input
+                            type='date'
                             onInput={event => handleDateInp(event.target.value)}
-                            className={`opacity-0 absolute`}
-                            id='dateInp' />
+                            className={`absolute opacity-0 w-full h-0`}
+                            id='dateInput' />
 
                         <button
                             onClick={() => handleDate('next')}
+                            aria-label='next day label'
                             className={`hover:bg-gray-300 transition-colors duration-200`}>
                             <ChevronRightIcon className='text-black h-5' /></button>
                     </div>
@@ -178,7 +188,7 @@ const InputsComponent = (props) => {
                 </span>
                 <span className='cursor-pointer sm:text-lg text-sm underline text-blue-500 opacity-80 flex items-center gap-x-1 hover:opacity-100' onClick={() => window.print()}>
                     <i><PrinterIcon className='h-5 text-black/60' /></i>
-                    <a>print</a>
+                    <a href='/'>print</a>
                 </span>
             </div>
 

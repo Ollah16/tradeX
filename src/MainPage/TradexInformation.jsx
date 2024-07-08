@@ -31,7 +31,7 @@ const TradexInformation = () => {
 
             <div>
                 <div className='h-12 mt-5 mb-9'>
-                    <img className='h-full' src={yearsImage} />
+                    <img className='h-full' src={yearsImage} alt='/' />
                 </div>
                 <h3 className='text-xl my-4'>Credible and accurate</h3>
                 <p className='text-gray-900'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laborum minima accusamus necessitatibus voluptate ratione assumenda doloremque recusandae culpa quod optio, expedita ipsum ipsam quidem vel est ea sunt distinctio?</p>
@@ -39,7 +39,7 @@ const TradexInformation = () => {
 
             <div>
                 <div className='h-12 mt-5 mb-9'>
-                    <img className='h-full' src={trustedImage} />
+                    <img className='h-full' src={trustedImage} alt='/' />
                 </div>
                 <h3 className='text-xl my-4'>Trusted provider</h3>
                 <p className='text-gray-900'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laborum minima accusamus necessitatibus voluptate ratione assumenda doloremque recusandae culpa quod optio, expedita ipsum ipsam quidem vel est ea sunt distinctio?</p>
@@ -47,7 +47,7 @@ const TradexInformation = () => {
 
             <div>
                 <div className='h-12 mt-5 mb-9'>
-                    <img className='h-full' src={credibleImage} />
+                    <img className='h-full' src={credibleImage} alt='/' />
                 </div>
                 <h3 className='text-xl my-4'>Years of FX Data</h3>
                 <p className='text-gray-900'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laborum minima accusamus necessitatibus voluptate ratione assumenda doloremque recusandae culpa quod optio, expedita ipsum ipsam quidem vel est ea sunt distinctio?</p>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Chart from 'chart.js/auto';
 
 
@@ -15,9 +15,9 @@ const ChartComponent = (props) => {
         { name: 'Max' }
     ]
 
-    let months = ['Jan',
+    const months = useMemo(() => (['Jan',
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ]
+    ]), [])
 
     useEffect(() => {
         chartRef.current.style.width = '100%'
@@ -45,7 +45,6 @@ const ChartComponent = (props) => {
                 ]
             }
         });
-        console.log(rateChart)
 
         return () => {
             rateChart.destroy();
