@@ -1,120 +1,41 @@
-import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import ConvertComp from './ConvertComp'
 import ConvertIntro from './ConvertIntro'
 import TradexDataComp from './TradexDataComp'
 import TradexInformation from './TradexInformation'
 import DownloadLinkComp from './DownloadLinkComp'
 import FrequentQuest from './FrequentQuest'
+import { useNavContext } from '../context/navContext'
+import { useAppContext } from '../context/appContext'
 
-const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover }) => {
+const MainComponent = () => {
 
-    const [amount, setAmount] = useState(1)
-    const [allCurrency, setAllCurr] = useState([])
-    const [currencyOne, setCurrOne] = useState('')
-    const [currencyTwo, setCurrTwo] = useState('')
-    const [amountOne, setAmountOne] = useState()
-    const mainRef = useRef(null)
-    const [isAdvanceRate, setRate] = useState(false)
+    const { navDrop, handleDrop, menuHover, helpHover, langHover } = useNavContext()
+    const { mainRef } = useAppContext()
 
     useEffect(() => {
-        handleFetchRate()
-    }, [])
+        const handleDropFunc = () => handleDrop(!navDrop);
 
-    useEffect(() => {
-        const handleConversion = () => {
-            const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
-            const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
-            setAmountOne(Number(amount * currPriceOne / currPriceTwo))
-        }
-
-        handleConversion()
-
-    }, [allCurrency, amount, currencyOne, currencyTwo])
-
-
-    useEffect(() => {
-
-        const mainCurr = mainRef.current
-
+        const mainCurr = mainRef.current;
         const handleScreen = () => navDrop ?
             mainCurr.addEventListener('click', handleDropFunc)
             :
             mainCurr.removeEventListener('click', handleDropFunc);
 
-        handleScreen()
+        const handleResize = () => {
+            if (window.innerWidth > 768 && navDrop) {
+                handleDrop(false);
+            }
+        };
+
+        handleScreen();
+        window.addEventListener('resize', handleResize);
 
         return () => {
             mainCurr.removeEventListener('click', handleDropFunc);
+            window.removeEventListener('resize', handleResize);
         };
-
-    }, [navDrop]);
-
-    const handleDropFunc = () => {
-        handleDrop(!navDrop)
-    }
-
-    const handleFetchRate = () => {
-
-        axios.get('https://tradex-iota.vercel.app/fetchRate/liveRate ', {
-
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-        })
-            .then((response) => {
-                const data = response.data
-                setCurrOne(data[0].symbol)
-                setCurrTwo(data[1].symbol)
-                setAllCurr(data.slice(0, 100))
-            })
-            .catch((error) => {
-                console.error('Error fetching exchange rates:', error);
-            });
-
-    };
-
-    const handleCurrOne = (event) => {
-        setCurrOne(event)
-        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === event)?.quote?.USD?.price
-        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
-
-        setAmountOne(amount * currPriceOne / currPriceTwo)
-    }
-
-    const handleCurrTwo = (event) => {
-        setCurrTwo(event)
-        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
-        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === event)?.quote?.USD?.price;
-        setAmount(amountOne * currPriceTwo / currPriceOne)
-    }
-
-    const handleAmount = (event) => {
-        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
-        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
-        setAmount(event)
-        setAmountOne(event * currPriceOne / currPriceTwo)
-    }
-
-    const handleAmountOne = (event) => {
-        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)?.quote?.USD?.price
-        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)?.quote?.USD?.price;
-        setAmountOne(event)
-        setAmount(event * currPriceTwo / currPriceOne)
-    }
-
-    const handleSwitch = () => {
-        setCurrOne(currencyTwo)
-        setCurrTwo(currencyOne)
-        setAmount(amountOne)
-        setAmountOne(amount)
-    }
-
-    const handlePercentage = (event) => {
-
-        setAmountOne(amountOne * event)
-
-    }
+    }, [navDrop, mainRef, handleDrop]);
 
     return (
         <div ref={mainRef} className={`
@@ -123,35 +44,11 @@ const MainComponent = ({ navDrop, handleDrop, menuHover, helpHover, langHover })
             <div className={`${navDrop ? 'pointer-events-none' : ''}`}>
                 <div className={`md:max-w-[1100px] md:mx-auto`}>
 
-                    < ConvertIntro
-                        amount={amount}
-                        currencyOne={currencyOne}
-                        currencyTwo={currencyTwo}
-                    />
+                    < ConvertIntro />
 
-                    <ConvertComp
-                        handlePercentage={handlePercentage}
-                        allCurrency={allCurrency}
-                        navDrop={navDrop}
-                        amount={amount}
-                        handleAmount={handleAmount}
-                        currencyOne={currencyOne}
-                        currencyTwo={currencyTwo}
-                        handleCurrOne={handleCurrOne}
-                        handleCurrTwo={handleCurrTwo}
-                        handleAmountOne={handleAmountOne}
-                        amountOne={amountOne}
-                        isAdvanceRate={isAdvanceRate}
-                        setRate={setRate}
-                        handleSwitch={handleSwitch}
-                    />
+                    <ConvertComp />
 
-                    <TradexDataComp
-                        allCurrency={allCurrency}
-                        isAdvanceRate={isAdvanceRate}
-                        currencyOne={currencyOne}
-                        currencyTwo={currencyTwo}
-                    />
+                    <TradexDataComp />
                 </div>
                 <div className='bg-gray-500/5 mx-[-28px] mb-[-0.75rem]'>
                     <div className='max-w-[900px] mx-auto'>

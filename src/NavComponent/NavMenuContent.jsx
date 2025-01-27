@@ -1,6 +1,7 @@
 import React from 'react'
+import { menuData } from '../utils'
 
-const NavMenuContent = ({ menuList }) => {
+const NavMenuContent = () => {
 
     return (
         <div>
@@ -9,7 +10,7 @@ const NavMenuContent = ({ menuList }) => {
             </div>
 
             <div className='px-5 md:grid md:grid-cols-3 gap-x-20'>
-                {menuList.map((menu, index) => (
+                {menuData.map((menu, index) => (
                     <ul className={`flex flex-col text-blue-200  md:text-inherit ${index === 1 ? 'col-span-2 w-80' : 'col-span-1 '}`} key={index}>
                         <li className='md:text-base text-xs font-medium after:bg-gray-500/35 my-2'>{menu.title}</li>
                         <li className={`md:text-2xl py-2 px-5 mr-[-1.25rem] ml-[-1.25rem] text-sm my-1 hover:bg-white/10 md:hover:text-blue-600 transition-color duration-100 cursor-pointer`}>

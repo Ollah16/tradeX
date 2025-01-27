@@ -2,8 +2,11 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { MdOutlineEmail } from "react-icons/md";
 import InnerCancelButtonComp from './InnerCancelButtonComp';
+import { useNavContext } from '../context/navContext';
 
-const HelpContainerComp = ({ helpHover, helpContent, innerCategory, handleInner, param }) => {
+const HelpContainerComp = () => {
+
+    const { helpHover, helpContent, innerCategory } = useNavContext()
 
     return (
         <div className={`absolute w-full md:w-96 ${innerCategory === 'help' ? 'right-0' : 'right-[-900px]'}
@@ -11,7 +14,7 @@ const HelpContainerComp = ({ helpHover, helpContent, innerCategory, handleInner,
         ${helpHover ? 'md:top-[75px]' : 'md:top-[-100%]'}`} ref={helpContent}>
 
             <ul>
-                <InnerCancelButtonComp handleInner={handleInner} param={param} />
+                <InnerCancelButtonComp param={"help"} />
                 <li className={`relative flex flex-col justify-between py-3
                                         mr-[-1.25rem] ml-[-1.25rem] px-5 transition-colors duration-500 ease-in-out hover:bg-white/10
                     before:absolute before:w-0 before:h-px before:bottom-0 before:content-[''] before:inline before:bg-black hover:before:w-full before:transition-width before:duration-500 before:left-0 before:ease-in-out

@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import InnerCancelButtonComp from './InnerCancelButtonComp'
 import { CheckIcon } from '@heroicons/react/outline'
+import { useNavContext } from '../context/navContext'
+import { langData } from '../utils'
 
-const LanguageListComp = ({ langContent, langHover, handleLang, langList, innerCategory, handleInner, param, language }) => {
+const LanguageListComp = () => {
 
+    const { langContent, langHover, SelectLanguage, innerCategory, language } = useNavContext()
 
     return (
         <div className={`absolute w-full md:w-96 ${innerCategory === 'language' ? 'right-0' : 'right-[-900px]'}
@@ -11,10 +14,10 @@ const LanguageListComp = ({ langContent, langHover, handleLang, langList, innerC
         ${langHover ? 'md:top-[75px]' : 'md:top-[-100%]'}`}
             ref={langContent}>
             <ul>
-                <InnerCancelButtonComp handleInner={handleInner} param={param} />
+                <InnerCancelButtonComp param={"help"} />
 
-                {langList.map((lang, index) => (
-                    <li onClick={() => handleLang(lang.abbr)}
+                {langData.map((lang, index) => (
+                    <li onClick={() => SelectLanguage(lang.abbr)}
                         className={`relative flex flex-col justify-between py-3
                         mr-[-1.25rem] ml-[-1.25rem] px-5 transition-colors duration-500 ease-in-out hover:bg-white/10
                     before:absolute before:w-0 before:h-px before:bottom-0 before:content-[''] before:inline before:bg-black hover:before:w-full before:transition-width before:duration-500 before:left-0 before:ease-in-out

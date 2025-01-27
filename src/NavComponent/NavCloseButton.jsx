@@ -1,8 +1,10 @@
 import React from 'react'
 import { XIcon } from '@heroicons/react/outline'
+import { useNavContext } from '../context/navContext'
 
-const NavCloseButton = ({ handleDrop, navDrop }) => {
+const NavCloseButton = () => {
 
+    const { handleDrop, navDrop } = useNavContext()
     return (
         <div className={`${navDrop ? 'left-[-20px]' : '-left-[900px]'} flex justify-center 
         transition-left ease-in-out duration-500 md:hidden 

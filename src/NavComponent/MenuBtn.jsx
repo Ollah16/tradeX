@@ -1,8 +1,10 @@
 import React from 'react'
 import { MenuIcon } from '@heroicons/react/outline'
-const MenuBtn = (props) => {
+import { useNavContext } from '../context/navContext'
 
-    const { handleDrop } = props
+const MenuBtn = () => {
+
+    const { handleDrop } = useNavContext()
 
     return (
         <div className='md:hidden py-5 h-full'>

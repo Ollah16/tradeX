@@ -1,8 +1,9 @@
 import React from 'react'
+import { useAppContext } from '../context/appContext'
 
-const ConvertIntro = (props) => {
+const ConvertIntro = () => {
 
-    const { amount, currencyOne, currencyTwo } = props
+    const { amount, currencyOne, currencyTwo } = useAppContext()
 
     return (
         <div className='w-full'>

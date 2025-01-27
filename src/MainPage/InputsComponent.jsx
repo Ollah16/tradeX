@@ -1,10 +1,24 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { QuestionMarkCircleIcon, ChevronLeftIcon, ChevronRightIcon, CalendarIcon, PrinterIcon } from '@heroicons/react/outline'
 import { LuArrowUpDown } from "react-icons/lu";
+import { useAppContext } from '../context/appContext';
 
-const InputsComponent = (props) => {
-    const { amount, handleAmount, amountOne, currencyOne, currencyTwo, handleAmountOne,
-        handleCurrOne, handleCurrTwo, navDrop, isAdvanceRate, setRate, handleSwitch, allCurrency, handlePercentage } = props
+const InputsComponent = () => {
+    const {
+        amount,
+        handleAmount,
+        amountOne,
+        currencyOne,
+        currencyTwo,
+        handleAmountOne,
+        handleCurrOne,
+        handleCurrTwo,
+        navDrop,
+        isAdvanceRate,
+        setRate,
+        handleSwitch,
+        allCurrency,
+        handlePercentage } = useAppContext()
 
     const interBank = [
         '+/-0%',
@@ -20,7 +34,6 @@ const InputsComponent = (props) => {
     const [year, setYear] = useState('')
     let [fullDate, setFDate] = useState('')
     const { cDate, months } = useMemo(() => { return { cDate: new Date(), months: ['Jan', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] } }, []);
-
 
     useEffect(() => {
 
@@ -131,7 +144,7 @@ const InputsComponent = (props) => {
                     <input
                         type='number'
                         aria-label='currency two'
-                        value={amountOne ? amountOne : ''}
+                        value={amountOne ? amountOne.toFixed(5) : ''}
                         onInput={(event) => handleAmountOne(Number(event.target.value))}
                         className={`h-14 w-full text-2xl font-medium transition-colors ease-in-out duration-200 ${navDrop ? 'bg-inherit' : 'bg-gray-400/15'} p-3 focus:outline-none hover:bg-gray-400/30 rounded-t border-b-2 border-black/50 transition-colors duration-200`} />
 

@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronRightIcon } from '@heroicons/react/outline'
+import { useAppContext } from '../context/appContext'
 
-const TradexDataComp = (props) => {
+const TradexDataComp = () => {
 
-    const { isAdvanceRate, currencyOne, currencyTwo, allCurrency } = props
-    const [freqNum, setFreq] = useState([
-        1, 5, 10, 25, 50, 100, 500, 1000, 5000, 10000, 50000
-    ])
-
-    const [calcOne, setCalcOne] = useState()
-    const [calcTwo, setCalcTwo] = useState()
-
-    useEffect(() => {
-        const currPriceOne = allCurrency && allCurrency.find(curr => curr.symbol === currencyOne)
-        const currPriceTwo = allCurrency && allCurrency.find(curr => curr.symbol === currencyTwo)
-        setCalcOne(currPriceOne?.quote?.USD?.price / currPriceTwo?.quote?.USD?.price)
-        setCalcTwo(currPriceTwo?.quote?.USD?.price / currPriceOne?.quote?.USD?.price)
-
-    }, [currencyOne, currencyTwo])
+    const { calcOne, calcTwo, isAdvanceRate, currencyOne, currencyTwo } = useAppContext()
+    const freqNum = [1, 5, 10, 25, 50, 100, 500, 1000, 5000, 10000, 50000]
 
     return (
         <div className={`gap-y-3 gap-x-10 my-10 w-full flex  ${isAdvanceRate ? 'md:grid md:grid-cols-3 flex-col' : 'flex-col md:flex-row'}`}>
@@ -28,7 +16,7 @@ const TradexDataComp = (props) => {
                 <div className='rounded-lg border border-gray-300 md:col-span-1 col-span-2'>
                     <section className={``}>
 
-                        <table className='table-auto w-full text-center'>
+                        <table className='table-auto w-full text-center overflow-hidden'>
                             <caption className="caption-top py-4 text-2xl font-bold text-black/80">
                                 {`Convert ${currencyOne} to ${currencyTwo} `}
                             </caption>
@@ -40,13 +28,16 @@ const TradexDataComp = (props) => {
                                 </tr>
                             </thead>
 
-                            <tbody className='p-1'>
-                                {freqNum && freqNum.map((num, index) => (
-                                    <tr key={index}>
-                                        <td className='py-2 flex items-center justify-center underline text-blue-800/80 hover:text-blue-800 transition-colors duration-200 ease-in-out cursor-pointer'>{num} {currencyOne} <ChevronRightIcon className='h-4 inline' /> </td>
-                                        <td className='py-2'>{num * calcOne} {currencyTwo}</td>
-                                    </tr>
-                                ))}
+                            <tbody>
+                                {freqNum && freqNum.map((num, index) => {
+                                    const currEquivalent = (num * calcOne).toFixed(5)
+                                    return (
+                                        <tr key={index}>
+                                            <td className='text-nowrap p-1 text-ellipsis underline text-blue-800/80 hover:text-blue-800 transition-colors duration-200 ease-in-out cursor-pointer'>{num} {currencyOne} <ChevronRightIcon className='h-4 inline' /> </td>
+                                            <td className='text-nowrap p-1 text-ellipsis'>{currEquivalent} {currencyTwo}</td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </section>
@@ -68,12 +59,15 @@ const TradexDataComp = (props) => {
                             </thead>
 
                             <tbody>
-                                {freqNum && freqNum.map((num, index) => (
-                                    <tr key={index}>
-                                        <td className='py-2 flex items-center justify-center underline text-blue-800/80 hover:text-blue-800 transition-colors duration-200 ease-in-out cursor-pointer'>{num} {currencyTwo} <ChevronRightIcon className='h-4 inline' /> </td>
-                                        <td className='py-2'>{num * calcTwo} {currencyOne}</td>
-                                    </tr>
-                                ))}
+                                {freqNum && freqNum.map((num, index) => {
+                                    const currEquivalent = (num * calcTwo).toFixed(5)
+                                    return (
+                                        <tr key={index}>
+                                            <td className='text-nowrap p-1 text-ellipsis underline text-blue-800/80 hover:text-blue-800 transition-colors duration-200 ease-in-out cursor-pointer'>{num} {currencyTwo} <ChevronRightIcon className='h-4 inline' /> </td>
+                                            <td className='text-nowrap p-1 text-ellipsis'>{currEquivalent} {currencyOne}</td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </section>

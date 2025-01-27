@@ -4,7 +4,7 @@ import googlePlay from '../asset/googlePlay.webp'
 
 const DownloadLinkComp = () => {
     return (
-        <div className='p-7'>
+        <div className='my-2'>
             <div className='my-6 p-10 rounded-lg bg-gray-200/70 flex flex-col items-center'>
                 <hr className='bg-green-800/70 h-1 w-40'></hr>
                 <p className='my-1 uppercase text-gray-700 tracking-widest font-normal text-sm'>Convert on the go</p>

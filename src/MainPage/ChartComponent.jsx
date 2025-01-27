@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Chart from 'chart.js/auto';
+import { useAppContext } from '../context/appContext';
 
 
-const ChartComponent = (props) => {
+const ChartComponent = () => {
 
-    const { amount, amountOne, currencyOne, currencyTwo } = props
+    const { amount, amountOne, currencyOne, currencyTwo } = useAppContext()
     const chartRef = useRef(null)
     const [amountEquiv, setAmEQ] = useState()
     const [amountInp, setAmIN] = useState()
