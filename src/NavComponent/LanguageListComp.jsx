@@ -14,7 +14,7 @@ const LanguageListComp = () => {
         ${langHover ? 'md:top-[75px]' : 'md:top-[-100%]'}`}
             ref={langContent}>
             <ul>
-                <InnerCancelButtonComp param={"help"} />
+                <InnerCancelButtonComp param={"language"} />
 
                 {langData.map((lang, index) => (
                     <li onClick={() => SelectLanguage(lang.abbr)}
